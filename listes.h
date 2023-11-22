@@ -15,7 +15,7 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 typedef struct s_d_list {
     int max_level;
-    struct s_d_cell **heads;
+    struct s_d_list **heads;
 }t_d_list;
 
 t_d_list* create_list(int max_lvl);
