@@ -25,7 +25,20 @@ t_d_list* create_list(int max_lvl) {
 }
 
 void cell_atHead(t_d_list* list, t_d_cell* cell) {
+    int levelsToSet;
 
+    if (cell->level > list->max_level) {
+        levelsToSet = list->max_level;
+    } else {
+        levelsToSet = cell->level;
+    }
+    cell->level = levelsToSet;
+
+    for (int i = 0; i < levelsToSet; ++i) {
+        cell->next[i] = list->heads;
+    }
+
+    list->heads = cell;
 }
 
 
@@ -34,7 +47,7 @@ void display_cells(t_d_list * list, int level) {
     printf("[list head_%d @-]", level);
 
     // Traverse the list and display cells at the specified level
-    t_d_cell *current = list->head;
+    t_d_cell *current = list->heads;
     while (current != NULL) {
         if (level < current->level) {
             printf("-->[ %d|@-]", current->value);
@@ -48,5 +61,24 @@ void display_cells(t_d_list * list, int level) {
 void display_all_levels(t_d_list * list) {
     for (int i = 0; i < list->max_level; i++) {
         display_cells(list, i);
+    }
+}
+
+void display_all_levels_aligned(t_d_list* list) {
+
+    for (int i = 0; i < list->max_level; i++) {
+        printf("[list head_%d @-]", i);
+
+        t_d_cell *current = list->heads;
+        while (current != list->heads) {
+            if (i < current->level) {
+                printf("-->[ %-4d|@-]", current->value);
+            } else {
+                printf("-------------");
+            }
+            current = current->level[0];
+        }
+        printf("-->NULL");
+        printf("\n");
     }
 }
