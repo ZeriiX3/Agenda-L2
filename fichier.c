@@ -122,8 +122,9 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
 
 void display_levels_list(int niv) {
-    int cell_number = pow(2, niv)-1;
-    int levels[cell_number];
+
+    int cell_number = pow(2, niv) - 1;  // Initialise le nombre de cellule
+    int levels[cell_number];    // Créer un tableau de taille cell_number
 
     for (int i = 0; i< cell_number; i++) {
         levels[i] = 1;
