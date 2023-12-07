@@ -47,16 +47,7 @@ void display_list_aligned(t_d_list* list);
 
 void insert_cell(t_d_list* list, t_d_cell* cell);
 
-int* createLevels(int n);
-
-void printLevels(int* levels, int size);
-
-t_d_list* create_list2(int n);
-void cell_atHead2(t_d_list* list, t_d_cell* cell);
-
-void display_list2(t_d_list * list);
-void insert_cell2(t_d_list* list, t_d_cell* cell);
-t_d_cell* create_cell2(int val, int lvl);
-void display_cells2(t_d_list *list, int level);
+// *********************************** LEVELS **************************************** //
+void display_levels_list(int niv);
 
 #endif //GESTION_AGENDA_FICHIER_H

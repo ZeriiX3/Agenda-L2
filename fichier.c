@@ -118,108 +118,36 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
     }
 }
-// Modifier la création d'une liste
-t_d_list *create_list2(int max_lvl) {
-    // Allocation mémoire pour la structure de la liste
-    t_d_list *list = (t_d_list *)malloc(sizeof(t_d_list));
 
-    // Affecter le nombre exact de niveaux pour la liste (n niveaux)
-    list->max_level = max_lvl;
 
-    // Initialiser le pointeur de tête à NULL (liste vide au départ)
-    list->heads = NULL;
+void display_levels_list(int niv) {
+    int cell_number = (niv^2)-1;
+    int levels[cell_number];
 
-    // Retourne le pointeur vers la liste nouvellement créée
-    return list;
-
-}
-void cell_atHead2(t_d_list *list, t_d_cell *cell) {
-    int temp;
-
-    // Assurez-vous que nous ne dépassons pas le nombre maximal de niveaux
-    if (cell->level > list->max_level) {
-        temp = list->max_level;
-    } else {
-        temp = cell->level;
+    for (int i = 0; i< cell_number; i++) {
+        levels[i] = 1;
     }
 
-    cell->level = temp;
-
-    // Maintenant, ajustez la manière dont les niveaux sont gérés
-    for (int i = 0; i < temp; ++i) {
-        cell->next[i] = list->heads;
-        list->heads = cell;
-    }
-}
-
-
-
-// Modifier la création d'une cellule
-t_d_cell *create_cell2(int val, int lvl) {
-    // Allocation mémoire pour la structure
-    t_d_cell *cell = (t_d_cell *)malloc(sizeof(t_d_cell));
-
-    // Initialisation des champs de la structure
-    cell->value = val;
-    cell->level = lvl;
-
-    // Allocation mémoire pour le tableau de pointeurs 'next'
-    cell->next = (t_d_cell **)calloc(lvl, sizeof(t_d_cell *));
-
-    // Initialisation des éléments du tableau 'next' à NULL
-    for (int i = 0; i < lvl; i++) {
-        // Ajouter la contrainte de pointage sur deux cellules du niveau précédent
-        if (i % 2 == 0 && i > 0) {
-            cell->next[i] = cell->next[i - 1];
-        } else {
-            cell->next[i] = NULL;
+    int pas = 2;
+    while (pas <= cell_number){
+        for (int j = 0; j < cell_number; j += pas) {
+            levels[j] += 1;
         }
+        pas *= 2;
     }
 
-    // Retourne le pointeur vers la cellule nouvellement créée
-    return cell;
-}
-void display_cells2(t_d_list *list, int level) {
-    printf("[list head_%d @-]", level);
+    int temp = niv;
+    t_d_list *main_list = create_list(niv);
+    printf("apagnan\n");
 
-    // Traverse the list and display cells at the specified level
-    t_d_cell *current = list->heads;
-    int count = 1;  // Commencez le compteur à 1
-    int displayCount = 1;
-
-    while (current != NULL) {
-        if (level < current->level) {
-            printf("-->[ %d|@-]", current->value);
-            if (count < displayCount) {
-                printf("---------------");
-            }
-            count = (count + 1) % (displayCount + 1);  // Ajustez le modulo en conséquence
-        } else {
-            printf("------------------------------------------------------------------------------->NULL");
-            count = 1;  // Réinitialisez le compteur pour le prochain niveau
-        }
-
-        current = current->next[0];  // Move to the next level
-
-        // Met à jour le compteur d'affichage en fonction de la puissance de 2
-        if (count == 1) {
-            displayCount *= 2;
-        }
+    for (int k = 0; k < cell_number; k++) {
+        printf("xu");
+        t_d_cell *cell = create_cell(k, levels[k]);
+        printf("feur");
+        insert_cell(main_list,cell);
     }
 
-    printf("\n");
-}
+    printf("azeaze\n");
+    display_list(main_list);
 
-
-
-
-
-void display_list2(t_d_list *list) {
-    for (int i = 0; i < list->max_level; i++) {
-        if (i < list->max_level - 1) {  // Utiliser le niveau maximum de la liste
-            display_cells(list, i);
-        } else {
-            printf("[list head_%d @-]------------------------------------------------------------------------------->NULL\n", i);
-        }
-    }
 }

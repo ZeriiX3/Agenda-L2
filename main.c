@@ -4,6 +4,8 @@
 int main() {
     printf("Hello, World!\n");
 
+    display_levels_list(3);
+    /*
     // Création d'une cellule avec 3 niveaux différents
     t_d_cell *cell5 = create_cell(50, 5);
     t_d_cell *cell4 = create_cell(40, 4);
@@ -20,15 +22,8 @@ int main() {
     insert_cell(main_list, cell5);
     insert_cell(main_list, cell4);
 
-
-    printf("3\n");
     // Affichage de tous les niveaux de la liste
     display_list(main_list);
-
-    /*
-    printf("4\n");
-    // Affichage de tous les niveaux de la liste avec alignement
-    display_list_aligned(main_list);*/
 
 
     // Libération de la mémoire
@@ -37,30 +32,9 @@ int main() {
     free(cell3);
     free(cell4);
     free(cell5);
-    free(main_list);
+    free(main_list);*/
 
-    int n;
 
-    // Demander à l'utilisateur d'entrer la valeur de n
-    printf("Entrez la valeur de n : ");
-    scanf("%d", &n);
-
-    // Création d'une liste avec un maximum de 2^n-1 niveaux
-    t_d_list *list = create_list2(n);
-
-    // Ajout des cellules à la liste
-    for (int i = 1; i <= (1 << n) - 1; i++) {
-        // Création d'une cellule avec i comme valeur et n comme niveau
-        t_d_cell *cell = create_cell2(i, n);
-        // Insertion de la cellule dans la liste
-        insert_cell(list, cell);
-    }
-
-    // Affichage de tous les niveaux de la liste
-    display_list2(list);
-
-    // Libération de la mémoire (à adapter selon vos besoins)
-    // ...
 
     return 0;
 }
