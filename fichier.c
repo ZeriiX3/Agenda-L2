@@ -7,6 +7,7 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 // ************************************ IMPORT ************************************ //
 #include "fichier.h"
+#include <math.h>
 // ******************************************************************************** //
 
 
@@ -78,9 +79,9 @@ void display_cells(t_d_list * list, int level) {
     while (current != NULL) {
         if (level < current->level) {
             printf("-->[ %d|@-]", current->value);
-        }else{
+        }/*else{
             printf("-----------");
-        }
+        }*/
         current = current->next[0];  // Move to the next level
 
     }
@@ -121,7 +122,7 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
 
 void display_levels_list(int niv) {
-    int cell_number = (niv^2)-1;
+    int cell_number = pow(2, niv)-1;
     int levels[cell_number];
 
     for (int i = 0; i< cell_number; i++) {
