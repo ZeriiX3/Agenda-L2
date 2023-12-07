@@ -5,12 +5,14 @@ int main() {
     printf("Hello, World!\n");
 
     // PARTIE 2
+    printf("PARTIE 2\n\n");
     int niv;
     printf("Entrez le niveau pour la liste :  ");
     scanf("%d", &niv);
     display_levels_list(niv);
 
     /* PARTIE 1
+    printf("PARTIE 1\n\n");
     // Création d'une cellule avec 3 niveaux différents
     t_d_cell *cell5 = create_cell(50, 5);
     t_d_cell *cell4 = create_cell(40, 4);
