@@ -140,7 +140,7 @@ void display_levels_list(int niv) {
     int temp = niv;
     t_d_list *main_list = create_list(niv);
 
-    for (int k = 0; k < cell_number; k++) {
+    for (int k = 1; k <= cell_number; k++) {
         t_d_cell *cell = create_cell(k, levels[k]);
         insert_cell(main_list,cell);
     }
