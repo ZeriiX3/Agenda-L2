@@ -79,8 +79,11 @@ void display_cells(t_d_list * list, int level) {
     while (current != NULL) {
         if (level < current->level) {
             printf("-->[ %d|@-]", current->value);
+        }else{
+            printf("-----------");
         }
         current = current->next[0];  // Move to the next level
+
     }
     printf("-->NULL");
     printf("\n");
@@ -92,24 +95,6 @@ void display_list(t_d_list * list) {
     }
 }
 
-void display_list_aligned(t_d_list* list) {
-
-    for (int i = 0; i < list->max_level; i++) {
-        printf("[list head_%d @-]", i);
-
-        t_d_cell *current = list->heads;
-        while (current != list->heads) {
-            if (i < current->level) {
-                printf("-->[ %-4d|@-]", current->value);
-            } else {
-                printf("-------------");
-            }
-            current = current->next[0];
-        }
-        printf("-->NULL");
-        printf("\n");
-    }
-}
 
 void insert_cell(t_d_list* list, t_d_cell* cell) {
     t_d_cell* temp = NULL;
