@@ -132,13 +132,8 @@ void display_levels_list(int niv) {
 
     // Initialise un tableau de 1 ( pas 0 car le 1 ici = premier et pas niveau 1)
     for (int i = 0; i < cell_number; i++) {
-        levels[i] = 0;
+        levels[i] = 1;
     }
-
-    for (int z = 0; z < cell_number; z++) {
-        printf("%d ", levels[z]);
-    }
-    printf("\n");
 
     int pas = 2;
     while (pas <= cell_number){
@@ -148,20 +143,56 @@ void display_levels_list(int niv) {
         pas *= 2;
     }
 
-    for (int z = 0; z < cell_number; z++) {
-        printf("%d ", levels[z]);
-    }
-    printf("\n");
-
     int temp = niv;
     t_d_list *main_list = create_list(niv);
 
-    for (int k = 1; k <= cell_number; k++) {
-        t_d_cell *cell = create_cell(k, levels[k]);
-        insert_cell(main_list,cell);
+    for (int k = 0; k < cell_number; k++) {
+        t_d_cell *cell = create_cell(k + 1, levels[k]);
+        insert_cell(main_list, cell);
     }
 
     display_list(main_list);
     free(main_list);
 
 }
+
+
+
+/* SEARCH */
+/*
+t_d_cell* search_cell_classic(int value, t_d_list* list) {
+
+    t_d_cell *tmp = list->heads;
+
+    while(tmp != NULL && tmp->value < value) {
+        tmp = tmp->next[0];
+    }
+
+    if(tmp != NULL && tmp->value == value) {
+        return tmp;
+    } else {
+        return NULL;
+    }
+}
+
+t_d_cell* search_cell_optimal(int value, t_d_list* list) {
+
+    t_d_cell *tmp = list->heads[list->max_level - 1];
+
+    for(int i = list->max_level - 1; i >= 0; i--) {
+        while(tmp != NULL && tmp->value < value) {
+
+            tmp = tmp->next[i];
+        }
+
+        if(tmp != NULL && tmp->value == value) {
+            return tmp;
+
+        }
+
+        tmp = list->heads[i];
+
+    }
+
+    return NULL;
+}*/

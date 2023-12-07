@@ -4,8 +4,13 @@
 int main() {
     printf("Hello, World!\n");
 
-    display_levels_list(3);
-    /*
+    // PARTIE 2
+    int niv;
+    printf("Entrez le niveau pour la liste :  ");
+    scanf("%d", &niv);
+    display_levels_list(niv);
+
+    /* PARTIE 1
     // Création d'une cellule avec 3 niveaux différents
     t_d_cell *cell5 = create_cell(50, 5);
     t_d_cell *cell4 = create_cell(40, 4);
@@ -25,7 +30,6 @@ int main() {
     // Affichage de tous les niveaux de la liste
     display_list(main_list);
 
-
     // Libération de la mémoire
     free(cell1);
     free(cell2);
@@ -33,7 +37,6 @@ int main() {
     free(cell4);
     free(cell5);
     free(main_list);*/
-
 
 
     return 0;
