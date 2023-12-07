@@ -25,11 +25,6 @@ int main() {
     // Affichage de tous les niveaux de la liste
     display_list(main_list);
 
-    /*
-    printf("4\n");
-    // Affichage de tous les niveaux de la liste avec alignement
-    display_list_aligned(main_list);*/
-
 
     // Libération de la mémoire
     free(cell1);

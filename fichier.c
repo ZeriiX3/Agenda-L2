@@ -54,23 +54,22 @@ t_d_list * create_list(int max_lvl) {
 }
 
 void cell_atHead(t_d_list* list, t_d_cell* cell) {
-    int levelsToSet;
+    int temp;
 
     if (cell->level > list->max_level) {
-        levelsToSet = list->max_level;
+        temp = list->max_level;
     } else {
-        levelsToSet = cell->level;
+        temp = cell->level;
     }
-    cell->level = levelsToSet;
+    cell->level = temp;
 
-    for (int i = 0; i < levelsToSet; ++i) {
+    for (int i = 0; i < temp; ++i) {
         cell->next[i] = list->heads;
     }
-
     list->heads = cell;
 }
 
-// Function to display all cells at a specific level in the list
+
 void display_cells(t_d_list * list, int level) {
     printf("[list head_%d @-]", level);
 
@@ -97,26 +96,22 @@ void display_list(t_d_list * list) {
 
 
 void insert_cell(t_d_list* list, t_d_cell* cell) {
+
     t_d_cell* temp = NULL;
     int i = 0;
 
     // Vérifie si on peut insérer en tête
     if (list->heads == NULL || list->heads->value > cell->value) {
         cell_atHead(list, cell);
-        printf("XU\n");
-
     } else {
 
         temp = list->heads;
 
         // Trouve l'emplacement correct pour insérer la cellule de manière croissante
         while (temp->next[i] != NULL && temp->next[i]->value < cell->value) {
-            printf("XU3\n");
             temp = temp->next[i];
-            printf("apagnan\n");
         }
 
-        printf("XU4\n");
         // Insère la cellule à la bonne position
         cell->next[i] = temp->next[i];
         temp->next[i] = cell;
