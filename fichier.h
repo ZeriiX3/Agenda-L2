@@ -24,7 +24,6 @@ typedef struct s_d_cell {
 t_d_cell* create_cell(int val, int lvl);
 
 
-
 // ***********************************LISTE**************************************** //
 
 // Structure
@@ -47,7 +46,9 @@ void display_list_aligned(t_d_list* list);
 
 void insert_cell(t_d_list* list, t_d_cell* cell);
 
+
 // *********************************** LEVELS **************************************** //
+
 void display_levels_list(int niv);
 
 #endif //GESTION_AGENDA_FICHIER_H

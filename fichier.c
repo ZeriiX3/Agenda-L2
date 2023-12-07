@@ -57,6 +57,7 @@ t_d_list * create_list(int max_lvl) {
 void cell_atHead(t_d_list* list, t_d_cell* cell) {
     int temp;
 
+    // dans le cas où level > max lvl possible de la liste
     if (cell->level > list->max_level) {
         temp = list->max_level;
     } else {
@@ -76,6 +77,7 @@ void display_cells(t_d_list * list, int level) {
 
     // Traverse the list and display cells at the specified level
     t_d_cell *current = list->heads;
+
     while (current != NULL) {
         if (level < current->level) {
             printf("-->[ %d|@-]", current->value);
@@ -90,6 +92,7 @@ void display_cells(t_d_list * list, int level) {
 }
 
 void display_list(t_d_list * list) {
+
     for (int i = 0; i < list->max_level; i++) {
         display_cells(list, i);
     }
@@ -104,6 +107,7 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
     // Vérifie si on peut insérer en tête
     if (list->heads == NULL || list->heads->value > cell->value) {
         cell_atHead(list, cell);
+
     } else {
 
         temp = list->heads;
@@ -123,20 +127,31 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
 void display_levels_list(int niv) {
 
-    int cell_number = pow(2, niv) - 1;  // Initialise le nombre de cellule
-    int levels[cell_number];    // Créer un tableau de taille cell_number
+    int cell_number = pow(2, niv) - 1;  // Initialise le nombre de cellules
+    int levels[cell_number];
 
-    for (int i = 0; i< cell_number; i++) {
-        levels[i] = 1;
+    // Initialise un tableau de 1 ( pas 0 car le 1 ici = premier et pas niveau 1)
+    for (int i = 0; i < cell_number; i++) {
+        levels[i] = 0;
     }
+
+    for (int z = 0; z < cell_number; z++) {
+        printf("%d ", levels[z]);
+    }
+    printf("\n");
 
     int pas = 2;
     while (pas <= cell_number){
-        for (int j = 0; j < cell_number; j += pas) {
+        for (int j = pas - 1; j < cell_number; j += pas) {
             levels[j] += 1;
         }
         pas *= 2;
     }
+
+    for (int z = 0; z < cell_number; z++) {
+        printf("%d ", levels[z]);
+    }
+    printf("\n");
 
     int temp = niv;
     t_d_list *main_list = create_list(niv);
@@ -147,5 +162,6 @@ void display_levels_list(int niv) {
     }
 
     display_list(main_list);
+    free(main_list);
 
 }
