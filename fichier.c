@@ -139,16 +139,12 @@ void display_levels_list(int niv) {
 
     int temp = niv;
     t_d_list *main_list = create_list(niv);
-    printf("apagnan\n");
 
     for (int k = 0; k < cell_number; k++) {
-        printf("xu");
         t_d_cell *cell = create_cell(k, levels[k]);
-        printf("feur");
         insert_cell(main_list,cell);
     }
 
-    printf("azeaze\n");
     display_list(main_list);
 
 }
