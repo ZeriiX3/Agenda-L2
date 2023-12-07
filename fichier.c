@@ -1,5 +1,5 @@
 /* Project C: Gestion d'un agenda
-Professeurs: Rado RAKOTONARIVO
+Professeurs: Mourad KMIMECH, Nicolas FLASQUE, Rado RAKOTONARIVO
 Octobre - Décembre / 2023
 
 Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
@@ -12,7 +12,7 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 
 
-// ***********************************CELL**************************************** //
+// *********************************** CELL **************************************** //
 
 // Création d'une cellule
 t_d_cell* create_cell(int val, int lvl) {
@@ -38,7 +38,7 @@ t_d_cell* create_cell(int val, int lvl) {
 
 
 
-// ***********************************LISTE**************************************** //
+// *********************************** LISTE **************************************** //
 
 t_d_list * create_list(int max_lvl) {
     // Allocate memory for the list structure
@@ -71,7 +71,7 @@ void cell_atHead(t_d_list* list, t_d_cell* cell) {
     list->heads = cell;
 }
 
-
+// Affichage d'une cellule part rapport à son niveau
 void display_cells(t_d_list * list, int level) {
     printf("[list head_%d @-]", level);
 
@@ -91,6 +91,7 @@ void display_cells(t_d_list * list, int level) {
     printf("\n");
 }
 
+// Boucle pour display_cell
 void display_list(t_d_list * list) {
 
     for (int i = 0; i < list->max_level; i++) {
@@ -98,7 +99,7 @@ void display_list(t_d_list * list) {
     }
 }
 
-
+// Insert une cellule, en faisant en sorte que la liste reste croissante
 void insert_cell(t_d_list* list, t_d_cell* cell) {
 
     t_d_cell* temp = NULL;
@@ -125,16 +126,22 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 }
 
 
+
+// *********************************** LEVELS **************************************** //
+
+
+// Fonctions pour créer la liste avec 2^n - 1 cellules, avec les valuers de 1 à 2^n -1
 void display_levels_list(int niv) {
 
     int cell_number = pow(2, niv) - 1;  // Initialise le nombre de cellules
     int levels[cell_number];
 
-    // Initialise un tableau de 1 ( pas 0 car le 1 ici = premier et pas niveau 1)
+    // Initialise un tableau de 1 (pas 0 car le 1 = premier et pas niveau 1)
     for (int i = 0; i < cell_number; i++) {
         levels[i] = 1;
     }
 
+    // + 1 avec des sauts qui double
     int pas = 2;
     while (pas <= cell_number){
         for (int j = pas - 1; j < cell_number; j += pas) {
@@ -143,14 +150,17 @@ void display_levels_list(int niv) {
         pas *= 2;
     }
 
+
     int temp = niv;
     t_d_list *main_list = create_list(niv);
 
+    // Boucle pour créer et ajouter une cellule à la liste
     for (int k = 0; k < cell_number; k++) {
         t_d_cell *cell = create_cell(k + 1, levels[k]);
         insert_cell(main_list, cell);
     }
 
+    // Affichage de la liste
     display_list(main_list);
     free(main_list);
 

@@ -1,8 +1,9 @@
 /* Project C: Gestion d'un agenda
-Professeurs: Rado RAKOTONARIVO
+Professeurs: Mourad KMIMECH, Nicolas FLASQUE, Rado RAKOTONARIVO
 Octobre - Décembre / 2023
 
 Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
+
 
 #ifndef GESTION_AGENDA_FICHIER_H
 #define GESTION_AGENDA_FICHIER_H

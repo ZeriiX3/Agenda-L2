@@ -1,17 +1,33 @@
+/* Project C: Gestion d'un agenda
+Professeurs: Mourad KMIMECH, Nicolas FLASQUE, Rado RAKOTONARIVO
+Octobre - Décembre / 2023
+
+Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
+
+
+// ************************************ IMPORT ************************************ //
 #include <stdio.h>
 #include "fichier.h"
+#include "timer.h"
+// ******************************************************************************** //
+
+
+// BOUCLE PRINCIPALE
 
 int main() {
-    printf("Hello, World!\n");
 
+    // TEST SOUTENANCE
     // PARTIE 2
     printf("PARTIE 2\n\n");
     int niv;
     printf("Entrez le niveau pour la liste :  ");
+    printf("\n");
     scanf("%d", &niv);
     display_levels_list(niv);
 
-    /* PARTIE 1
+
+    // PARTIE 1
+    /*
     printf("PARTIE 1\n\n");
     // Création d'une cellule avec 3 niveaux différents
     t_d_cell *cell5 = create_cell(50, 5);
@@ -28,6 +44,7 @@ int main() {
     insert_cell(main_list, cell1);
     insert_cell(main_list, cell5);
     insert_cell(main_list, cell4);
+    insert_cell(main_list, cell2);
 
     // Affichage de tous les niveaux de la liste
     display_list(main_list);
@@ -38,9 +55,8 @@ int main() {
     free(cell3);
     free(cell4);
     free(cell5);
-    free(main_list);*/
-
+    free(main_list);
+     */
 
     return 0;
 }
-
