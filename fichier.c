@@ -86,13 +86,13 @@ void display_cells(t_d_list * list, int level) {
     printf("\n");
 }
 
-void display_all_levels(t_d_list * list) {
+void display_list(t_d_list * list) {
     for (int i = 0; i < list->max_level; i++) {
         display_cells(list, i);
     }
 }
 
-void display_all_levels_aligned(t_d_list* list) {
+void display_list_aligned(t_d_list* list) {
 
     for (int i = 0; i < list->max_level; i++) {
         printf("[list head_%d @-]", i);
@@ -111,37 +111,31 @@ void display_all_levels_aligned(t_d_list* list) {
     }
 }
 
-// Function to insert a cell at the correct position to keep the list sorted
-void insert_cell(t_d_list * list, t_d_cell * cell) {
+void insert_cell(t_d_list* list, t_d_cell* cell) {
+    t_d_cell* temp = NULL;
+    int i = 0;
 
-    int levelsToSet = (cell->level > list->max_level) ? list->max_level : cell->level;
-    cell->level = levelsToSet;
+    // Vérifie si on peut insérer en tête
+    if (list->heads == NULL || list->heads->value > cell->value) {
+        cell_atHead(list, cell);
+        printf("XU\n");
 
-    // Special case: If the list is empty or the new cell should be the new head
-    if (list->heads == NULL || cell->value < list->heads->value) {
-        for (int i = 0; i < levelsToSet; ++i) {
-            cell->next[i] = list->heads;
+    } else {
+
+        temp = list->heads;
+
+        // Trouve l'emplacement correct pour insérer la cellule de manière croissante
+        while (temp->next[i] != NULL && temp->next[i]->value < cell->value) {
+            printf("XU3\n");
+            temp = temp->next[i];
+            printf("apagnan\n");
         }
-        list->heads = cell;
-        return;
-    }
 
-    // Traverse the list to find the correct position to insert the cell
-    t_d_cell * current = list->heads;
-    t_d_cell * previous = NULL;
+        printf("XU4\n");
+        // Insère la cellule à la bonne position
+        cell->next[i] = temp->next[i];
+        temp->next[i] = cell;
 
-    while (current != NULL && current->value < cell->value) {
-        previous = current;
-        current = current->next[0];
-    }
-
-    // Insert the cell at the correct position
-    for (int i = 0; i < levelsToSet; ++i) {
-        cell->next[i] = current;
-    }
-
-    if (previous != NULL) {
-        previous->next[0] = cell;
     }
 }
 

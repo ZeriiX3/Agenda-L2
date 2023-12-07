@@ -27,7 +27,6 @@ t_d_cell* create_cell(int val, int lvl);
 
 // ***********************************LISTE**************************************** //
 
-
 // Structure
 typedef struct s_d_list {
     int max_level;
@@ -42,9 +41,9 @@ void cell_atHead(t_d_list* list, t_d_cell* cell);
 
 void display_cells(t_d_list * list, int level);
 
-void display_all_levels(t_d_list * list);
+void display_list(t_d_list * list);
 
-void display_all_levels_aligned(t_d_list* list);
+void display_list_aligned(t_d_list* list);
 
 void insert_cell(t_d_list* list, t_d_cell* cell);
 
