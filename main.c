@@ -147,8 +147,6 @@ int main() {
 
     while (app_state == 1) {
 
-        scanf("");
-
         printf("BONJOUR\n");
         printf("Il y a %d contact(s) dans la liste\n", get_number_of_contacts(contact_list));
         printf("Veuillez selectionner une fonctionnalite\n");
@@ -188,7 +186,7 @@ int main() {
                 menu_display_appointment(contact_list);
                 break;
             }
-            
+
             case 6: {
                 app_state = 0;
                 break;
