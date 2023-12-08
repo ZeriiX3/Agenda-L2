@@ -59,7 +59,8 @@ int main() {
 
 
     // PARTIE 2 ********************************************************//
-    /*printf("PARTIE 2\n\n");
+
+    printf("PARTIE 2\n\n");
 
     int niv;
     printf("Entrez le niveau pour la liste :  ");
@@ -67,12 +68,12 @@ int main() {
     scanf("%d", &niv);
 
     // Création des listes avec les levels demandés
-    t_d_list* list_part2 = create_levels_list(niv);
+    t_d_list *list_part2 = create_levels_list(niv);
     display_levels_list(list_part2);
 
 
-    /**********************RECHERCHE *****************************/
-    /*
+    //---**********************RECHERCHE *****************************/
+
     int val;
     printf("\nEntrez la valeur a chercher dans la liste :  ");
     scanf("%d", &val);
@@ -82,7 +83,7 @@ int main() {
 
     startTimer();
 
-    int resultat_classique = search_cell_classique(list_part2,val);
+    int resultat_classique = search_cell_classique(list_part2, val);
     printf("\n[RECHERCHE CLASSIQUE]--> ");
 
     if (resultat_classique == 1) {
@@ -98,7 +99,7 @@ int main() {
 
     startTimer();
 
-    int resultat_opti = search_cell_optimal(list_part2,val);
+    int resultat_opti = search_cell_optimal(list_part2, val);
     printf("\n[RECHERCHE OPTIMALE]---> ");
 
     if (resultat_opti == 1) {
@@ -112,12 +113,16 @@ int main() {
     printf("\n");
 
 
-    int resultat_classique = search_cell_classique(list_part2,val);
+
+
+    // ------------------------------------------- BOUUUUUCLEEEEE -------------------------------------------
+    /*
+    int resultat_classique = search_cell_classique(list_part2, val);
     // Boucle pour toutes les valuers
     printf("BOUCLE CLASSIQUE\n");
     startTimer();
     for (int i = 1; i < val; i++) {
-        resultat_classique = search_cell_classique(list_part2,val);
+        resultat_classique = search_cell_classique(list_part2, val);
     }
     stopTimer();
     displayTime();
@@ -126,21 +131,23 @@ int main() {
     printf("BOUCLE OPTI\n");
     startTimer();
     for (int i = 1; i < val; i++) {
-        resultat_classique = search_cell_optimal(list_part2,val);
+        resultat_classique = search_cell_optimal(list_part2, val);
     }
     stopTimer();
     displayTime();
     printf("\n");
+
     */
 
-
-
     // Mémoire
-    //free(list_part2);
+    free(list_part2);
 
 
-    /* PARTIE 3*************************/
 
+
+    // PARTIE 3*************************/
+
+    /*
     t_input_list* contact_list = create_input_list(4);
 
     int app_state = 1;
@@ -199,10 +206,10 @@ int main() {
             }
         }
     }
-
+*/
     return 0;
 }
 
-// TIMER
+
 
 

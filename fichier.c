@@ -184,44 +184,17 @@ int search_cell_classique(t_d_list* list, int value) {
 
     t_d_cell *temp = list->heads[0];
 
-    while(temp != NULL && temp->value < value) {
+    while (temp != NULL && temp->value < value) {
         temp = temp->next[0];
     }
 
-    if(temp != NULL && temp->value == value) {
+    if (temp != NULL && temp->value == value) {
         return 1;
     } else {
         return 0;
     }
 }
 
-/*
-int search_cell_optimal(t_d_list* list, int value) {
-    t_d_cell* temp = list->heads;
-
-    // Commence à partir du niveau maximal
-    for (int i = list->max_level - 1; i >= 0; i--) {
-        // Traverse le niveau actuel jusqu'à ce que la valeur soit trouvée ou dépassée
-        while (temp != NULL && temp->value < value) {
-            printf("Level %d: Moving to next cell with value %d\n", i, temp->value);
-            temp = temp->next[i];
-
-        }
-
-        // Si la valeur est trouvée, retourne 1
-        if (temp != NULL && temp->value == value) {
-            printf("Value %d found at level %d\n", value, i);
-            return 1;
-        }
-
-        // Réinitialise temp pour le niveau suivant
-        temp = list->heads;
-    }
-
-    // La valeur n'a pas été trouvée dans la liste, retourne 0
-    printf("Value %d not found in the list\n", value);
-    return 0;
-}*/
 
 int search_cell_optimal(t_d_list* list, int value) {
 
@@ -239,32 +212,7 @@ int search_cell_optimal(t_d_list* list, int value) {
             }
         }
     }
-
     return 0;
 }
 
 
-
-
-/*
-t_d_cell* search_cell_optimal(int value, t_d_list* list) {
-
-    t_d_cell *tmp = list->heads[list->max_level - 1];
-
-    for(int i = list->max_level - 1; i >= 0; i--) {
-        while(tmp != NULL && tmp->value < value) {
-
-            tmp = tmp->next[i];
-        }
-
-        if(tmp != NULL && tmp->value == value) {
-            return tmp;
-
-        }
-
-        tmp = list->heads[i];
-
-    }
-
-    return NULL;
-}*/
