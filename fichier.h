@@ -30,7 +30,7 @@ t_d_cell* create_cell(int val, int lvl);
 // Structure
 typedef struct s_d_list {
     int max_level;
-    t_d_cell *heads;
+    t_d_cell **heads;
 }t_d_list;
 
 
