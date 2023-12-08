@@ -19,11 +19,17 @@ int main() {
     // TEST SOUTENANCE
     // PARTIE 2
     printf("PARTIE 2\n\n");
+
     int niv;
     printf("Entrez le niveau pour la liste :  ");
     printf("\n");
     scanf("%d", &niv);
-    display_levels_list(niv);
+
+    t_d_list* list_part2 = create_levels_list(niv);
+    display_levels_list(list_part2);
+
+    // RECHERCHE CLASSIQUE
+
 
 
     // PARTIE 1

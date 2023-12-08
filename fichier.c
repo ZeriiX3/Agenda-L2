@@ -131,8 +131,9 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
 
 // Fonctions pour créer la liste avec 2^n - 1 cellules, avec les valuers de 1 à 2^n -1
-void display_levels_list(int niv) {
+t_d_list* create_levels_list(int niv) {
 
+    // PARTIE TABLEAU
     int cell_number = pow(2, niv) - 1;  // Initialise le nombre de cellules
     int levels[cell_number];
 
@@ -150,25 +151,57 @@ void display_levels_list(int niv) {
         pas *= 2;
     }
 
-
+    // PARTIE INSERTION
     int temp = niv;
-    t_d_list *main_list = create_list(niv);
+    t_d_list *level_list = create_list(niv);
 
     // Boucle pour créer et ajouter une cellule à la liste
     for (int k = 0; k < cell_number; k++) {
         t_d_cell *cell = create_cell(k + 1, levels[k]);
-        insert_cell(main_list, cell);
+        insert_cell(level_list, cell);
     }
 
-    // Affichage de la liste
-    display_list(main_list);
-    free(main_list);
+    return level_list;
 
+}
+
+void display_levels_list(t_d_list* list) {
+    // Affichage de la liste
+    display_list(list);
+    free(list);
 }
 
 
 
-/* SEARCH */
+// Recherche
+
+int search_cell_classique(t_d_list* list, int value) {
+
+    t_d_cell* temp = NULL;
+    int i = 0;
+
+    // Vérifie si on peut insérer en tête
+    if (list->heads == NULL) {
+        return -1;
+
+    } else {
+
+        temp = list->heads;
+
+        // Cherche la valeur au niveau 0
+        while (temp->next[i] != NULL && temp->next[i]->value < value) {
+            temp = temp->next[i];
+        }
+
+        if (temp != NULL && temp->value == value) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+}
+
 /*
 t_d_cell* search_cell_classic(int value, t_d_list* list) {
 

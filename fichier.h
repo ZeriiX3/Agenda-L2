@@ -50,7 +50,14 @@ void insert_cell(t_d_list* list, t_d_cell* cell);
 
 // *********************************** LEVELS **************************************** //
 
-void display_levels_list(int niv);
+t_d_list* create_levels_list(int niv);
+
+
+// *********************************** SEARCH **************************************** //
+
+int search_cell_classique(t_d_list* list, int value);
+
+void display_levels_list(t_d_list* list);
 
 
 #endif //GESTION_AGENDA_FICHIER_H
