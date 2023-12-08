@@ -41,19 +41,20 @@ t_d_cell* create_cell(int val, int lvl) {
 // *********************************** LISTE **************************************** //
 
 t_d_list * create_list(int max_lvl) {
-    // Allocate memory for the list structure
+    // Allocation de memoire pour la liste
     t_d_list * list = (t_d_list *)malloc(sizeof(t_d_list));
 
-    // Set the maximum number of levels for the list
+    // Permet de poser le nombre maximum de levels de la liste
     list->max_level = max_lvl;
 
-    // Set the head of the list to NULL (empty list)
+    // Mettre le head de la liste a NULL (liste vide)
     list->heads = NULL;
 
-    // Return the pointer to the created list
+    // Retourne le pointeur a la liste
     return list;
 }
 
+// Mettre une cellule en head de la liste
 void cell_atHead(t_d_list* list, t_d_cell* cell) {
     int temp;
 

@@ -20,9 +20,20 @@ int main() {
     // PARTIE 2
     printf("PARTIE 2\n\n");
     int niv;
-    printf("Entrez le niveau pour la liste :  ");
-    printf("\n");
-    scanf("%d", &niv);
+    printf("Entrez le niveau pour la liste :  \n");
+    do {
+        if (scanf("%d", &niv) != 1) {
+            // La saisie n'est pas un nombre entier si la condition dans le scanf est vraie
+            printf("Veuillez entrer un nombre entier:\n");
+
+            // Nettoyer le buffer d'entrée afin d'eviter une boucle infinie
+            while (getchar() != '\n');
+        } else {
+
+            break;
+        }
+    } while (1);
+
     display_levels_list(niv);
 
 
