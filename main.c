@@ -7,6 +7,7 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 // ************************************ IMPORT ************************************ //
 #include <stdio.h>
+#include <string.h>
 #include "fichier.h"
 #include "timer.h"
 #include "models.h"
@@ -70,7 +71,7 @@ int main() {
     display_levels_list(list_part2);
 
 
-    //****************************** RECHERCHE *****************************/
+    /**********************RECHERCHE *****************************/
     /*
     int val;
     printf("\nEntrez la valeur a chercher dans la liste :  ");
@@ -110,7 +111,7 @@ int main() {
     displayTime();
     printf("\n");
 
-    /*
+
     int resultat_classique = search_cell_classique(list_part2,val);
     // Boucle pour toutes les valuers
     printf("BOUCLE CLASSIQUE\n");
@@ -140,36 +141,17 @@ int main() {
 
     /* PARTIE 3*************************/
 
-    /*
-     * /*
-    // read the text file in ../libs/data/noms2008nat_txt.txt in wich each line is a lastName, take 1000 lastName randomly and add them to the list
-    FILE *file = fopen("../libs/data/noms2008nat_txt.txt", "r");
-    char line[256];
-    int i = 0;
+    t_input_list* contact_list = create_input_list(4);
 
-    while (fgets(line, sizeof(line), file)) {
-        if (i < 1000) {
-            char *lastName = malloc(sizeof(char) * 256);
-            strcpy(lastName, line);
-            lastName[strlen(lastName) - 1] = '\0';
-            t_contact *contact = create_contact("John", lastName);
-            insert_input(contact, MAIN_LIST);
-            i++;
-        }
-    }
-
-    fclose(file);
-     */
-
-    t_input_list* MAIN_LIST = create_input_list(4);
     int app_state = 1;
 
     while (app_state == 1) {
 
         scanf("");
 
-        printf("MENU\n");
-        printf("%d contacts dans la liste\n", get_number_of_contacts(MAIN_LIST));
+        printf("BONJOUR\n");
+        printf("Il y a %d contact(s) dans la liste\n", get_number_of_contacts(contact_list));
+        printf("Veuillez selectionner une fonctionnalite\n");
         printf("1. Ajouter un contact\n");
         printf("2. Chercher un contact\n");
         printf("3. Afficher les contacts\n");
@@ -183,31 +165,30 @@ int main() {
         switch (choice) {
 
             case 1: {
-                menu_add_contact(MAIN_LIST);
+                menu_add_contact(contact_list);
                 break;
             }
 
             case 2: {
-                menu_find_contact(MAIN_LIST);
+                menu_find_contact(contact_list);
                 break;
             }
 
             case 3: {
-                menu_display_all_contacts(MAIN_LIST);
+                menu_display_all_contacts(contact_list);
                 break;
             }
 
             case 4 : {
-                menu_add_appointment(MAIN_LIST);
+                menu_add_appointment(contact_list);
                 break;
             }
 
             case 5: {
-                menu_display_appointment(MAIN_LIST);
+                menu_display_appointment(contact_list);
                 break;
             }
-
-
+            
             case 6: {
                 app_state = 0;
                 break;
