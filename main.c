@@ -17,30 +17,20 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 int main() {
 
     // TEST SOUTENANCE
-    // PARTIE 2
-    printf("PARTIE 2\n\n");
-
-    int niv;
-    printf("Entrez le niveau pour la liste :  ");
-    printf("\n");
-    scanf("%d", &niv);
-
-    t_d_list* list_part2 = create_levels_list(niv);
-    display_levels_list(list_part2);
-
-    // RECHERCHE CLASSIQUE
 
 
 
-    // PARTIE 1
-    /*
-    printf("PARTIE 1\n\n");
+
+
+    // PARTIE 1 ********************************************************//
+
+    /*printf("PARTIE 1\n\n");
     // Création d'une cellule avec 3 niveaux différents
-    t_d_cell *cell5 = create_cell(50, 5);
-    t_d_cell *cell4 = create_cell(40, 4);
-    t_d_cell *cell3 = create_cell(30, 3);
-    t_d_cell *cell2 = create_cell(20, 2);
-    t_d_cell *cell1 = create_cell(10, 1);
+    t_d_cell *cell5 = create_cell(5, 5);
+    t_d_cell *cell4 = create_cell(4, 4);
+    t_d_cell *cell3 = create_cell(3, 3);
+    t_d_cell *cell2 = create_cell(2, 2);
+    t_d_cell *cell1 = create_cell(1, 1);
 
     // Création d'une liste avec un maximum de 6 niveaux
     t_d_list *main_list = create_list(6);
@@ -62,7 +52,54 @@ int main() {
     free(cell4);
     free(cell5);
     free(main_list);
-     */
+*/
+
+
+    // PARTIE 2 ********************************************************//
+    printf("PARTIE 2\n\n");
+
+    int niv;
+    printf("Entrez le niveau pour la liste :  ");
+    printf("\n");
+    scanf("%d", &niv);
+
+    // Création des listes avec les levels demandés
+    t_d_list* list_part2 = create_levels_list(niv);
+    display_levels_list(list_part2);
+
+
+    //****************************** RECHERCHE *************************//
+
+    int val;
+    printf("\nEntrez la valeur a chercher dans la liste :  ");
+    scanf("%d", &val);
+
+    // RECHERCHE CLASSIQUE
+
+    int resultat_classique = search_cell_classique(list_part2,val);
+    printf("\n[RECHERCHE CLASSIQUE]--> ");
+
+    if (resultat_classique == 1) {
+        printf("La valeur %d a ete trouve", val);
+    } else {
+        printf("La valeur %d n'est pas dans la liste", val);
+    }
+
+    // RECHERCHE OPTIMALE
+
+    int resultat_opti = search_cell_optimal(list_part2,val);
+    printf("\n[RECHERCHE OPTIMALE]---> ");
+
+    if (resultat_opti == 1) {
+        printf("La valeur %d a ete trouve", val);
+    } else {
+        printf("La valeur %d n'est pas dans la liste", val);
+    }
+
+
+    // Mémoire
+    free(list_part2);
+
 
     return 0;
 }

@@ -57,6 +57,8 @@ t_d_list* create_levels_list(int niv);
 
 int search_cell_classique(t_d_list* list, int value);
 
+int search_cell_optimal(t_d_list* list, int value);
+
 void display_levels_list(t_d_list* list);
 
 

@@ -153,9 +153,14 @@ t_d_list* create_levels_list(int niv) {
 
     // PARTIE INSERTION
     int temp = niv;
-    t_d_list *level_list = create_list(niv);
+    t_d_list* level_list = create_list(niv);
+
 
     // Boucle pour créer et ajouter une cellule à la liste
+    /*for (int k = 0; k < cell_number; k++) {
+        t_d_cell *cell = create_cell(k + 1, levels[k]);
+        insert_cell(level_list, cell);
+    }*/
     for (int k = 0; k < cell_number; k++) {
         t_d_cell *cell = create_cell(k + 1, levels[k]);
         insert_cell(level_list, cell);
@@ -168,56 +173,55 @@ t_d_list* create_levels_list(int niv) {
 void display_levels_list(t_d_list* list) {
     // Affichage de la liste
     display_list(list);
-    free(list);
 }
 
 
 
 // Recherche
 
+
+
+
+
 int search_cell_classique(t_d_list* list, int value) {
 
-    t_d_cell* temp = NULL;
-    int i = 0;
+    t_d_cell *temp = list->heads;
 
-    // Vérifie si on peut insérer en tête
-    if (list->heads == NULL) {
-        return -1;
+    while(temp != NULL && temp->value < value) {
+        temp = temp->next[0];
+    }
 
+    if(temp != NULL && temp->value == value) {
+        return 1;
     } else {
+        return 0;
+    }
+}
 
-        temp = list->heads;
+int search_cell_optimal(t_d_list* list, int value) {
+    t_d_cell* temp = list->heads;
 
-        // Cherche la valeur au niveau 0
-        while (temp->next[i] != NULL && temp->next[i]->value < value) {
+    // Commence à partir du niveau maximal
+    for (int i = list->max_level - 1; i >= 0; i--) {
+        // Traverse le niveau actuel jusqu'à ce que la valeur soit trouvée ou dépassée
+        while (temp != NULL && temp->value < value) {
             temp = temp->next[i];
         }
 
+        // Si la valeur est trouvée, retourne 1
         if (temp != NULL && temp->value == value) {
             return 1;
-        } else {
-            return 0;
         }
+
+        // Réinitialise temp pour le niveau suivant
+        temp = list->heads;
     }
 
+    // La valeur n'a pas été trouvée dans la liste, retourne 0
+    return 0;
 }
 
 /*
-t_d_cell* search_cell_classic(int value, t_d_list* list) {
-
-    t_d_cell *tmp = list->heads;
-
-    while(tmp != NULL && tmp->value < value) {
-        tmp = tmp->next[0];
-    }
-
-    if(tmp != NULL && tmp->value == value) {
-        return tmp;
-    } else {
-        return NULL;
-    }
-}
-
 t_d_cell* search_cell_optimal(int value, t_d_list* list) {
 
     t_d_cell *tmp = list->heads[list->max_level - 1];
