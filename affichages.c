@@ -1,17 +1,19 @@
-//
-// Created by Seb on 08/12/2023.
-//
+/* Project C: Gestion d'un agenda
+Professeurs: Mourad KMIMECH, Nicolas FLASQUE, Rado RAKOTONARIVO
+Octobre - Décembre / 2023
+
+Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 #include "affichages.h"
 #include "models.h"
-
+#include "timer.h"
 
 #include <stdio.h>
 
+
+// FONCTION POUR AFFICHER LE MENU DE LA PARTIE 1 SUR LE MAIN
 void menu_part1() {
     // PARTIE 1
-
-
     printf("PARTIE 1\n");
 
     // Création de cellules avec des niveaux différents
@@ -20,7 +22,6 @@ void menu_part1() {
     t_d_cell *cell3 = create_cell(3, 3);
     t_d_cell *cell4 = create_cell(4, 4);
     t_d_cell *cell5 = create_cell(5, 5);
-
 
     // Création d'une liste avec un maximum de 6 niveaux
     t_d_list *main_list = create_list(6);
@@ -45,6 +46,42 @@ void menu_part1() {
 
 }
 
+
+                /*startTimer();
+
+
+                printf("\n[RECHERCHE CLASSIQUE]--> ");
+
+                if (resultat_classique == 1) {
+                    printf("La valeur %d a ete trouve\n", val);
+                } else {
+                    printf("La valeur %d n'est pas dans la liste\n", val);
+                }
+                stopTimer();
+                displayTime();
+                printf("\n");
+
+                // RECHERCHE OPTIMALE
+
+                startTimer();
+
+                int resultat_opti = search_cell_optimal(list_part2, val);
+                printf("\n[RECHERCHE OPTIMALE]---> ");
+
+                if (resultat_opti == 1) {
+                    printf("La valeur %d a ete trouve\n", val);
+                } else {
+                    printf("La valeur %d n'est pas dans la liste\n", val);
+                }
+
+                stopTimer();
+                displayTime();
+                printf("\n");
+                break;*/
+
+
+
+// FONCTION POUR AFFICHER LE MENU DE LA PARTIE 3 SUR LE MAIN
 void menu_part3(t_input_list * contact_list) {
 
     char run_part3 = '1';
@@ -57,17 +94,19 @@ void menu_part3(t_input_list * contact_list) {
         printf("\n");
         printf("Il y a %d contact(s) dans la liste\n", get_number_of_contacts(contact_list));
         printf("Veuillez selectionner une fonctionnalite\n");
-        printf("1. Ajouter un contact\n");
-        printf("2. Chercher un contact\n");
-        printf("3. Afficher les contacts\n");
-        printf("4. Ajouter un rendez-vous\n");
-        printf("5. Affichez les rendez vous\n");
-        printf("6. Quitter\n");
+        printf("1) Ajouter un contact\n");
+        printf("2) Chercher un contact\n");
+        printf("3) Afficher les contacts\n");
+        printf("4) Ajouter un rendez-vous\n");
+        printf("5) Affichez les rendez vous\n");
+        printf("6) Quitter\n");
 
-        char choice = 0;
-        scanf(" %c", &choice);
+        char choix = 0;
+        char input[15];  // Vous pouvez ajuster la taille en fonction de vos besoins
+        fgets(input, sizeof(input), stdin);
+        sscanf(input, " %c", &choix);
 
-        switch (choice) {
+        switch (choix) {
 
             case '1': {
                 menu_add_contact(contact_list);
@@ -103,10 +142,7 @@ void menu_part3(t_input_list * contact_list) {
 
 
 
-
-
-
-
+// FONCTIONS
 
 
 void menu_display_contact(t_contact* contact) {
@@ -240,7 +276,6 @@ void menu_add_appointment(t_input_list* input_list) {
     }
 
     t_appointment* appointment = create_appointment(object, hour, minute, day, month, year);
-
     insert_appointment(appointment, input);
 
     return;
@@ -250,7 +285,6 @@ void menu_display_appointment(t_input_list* input_list) {
 
     printf("Entrer le nom de famille du contact : ");
     char* last_name = scan_string();
-
     t_input* input = find_contact(last_name, input_list);
 
     if(input == NULL) {
@@ -266,7 +300,6 @@ void menu_display_appointment(t_input_list* input_list) {
         printf("Date : %d/%d/%d\n", tmp->jour, tmp->mois, tmp->annee);
         tmp = tmp->suivant;
     }
-
     return;
 }
 
@@ -283,7 +316,6 @@ int get_number_of_contacts(t_input_list* input_list) {
             tmp = tmp->suivant;
         }
     }
-
     return number_of_contacts;
 }
 
