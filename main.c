@@ -24,37 +24,7 @@ int main() {
 
 
 
-    // PARTIE 1 ********************************************************//
 
-    /*printf("PARTIE 1\n\n");
-    // Création d'une cellule avec 3 niveaux différents
-    t_d_cell *cell5 = create_cell(5, 5);
-    t_d_cell *cell4 = create_cell(4, 4);
-    t_d_cell *cell3 = create_cell(3, 3);
-    t_d_cell *cell2 = create_cell(2, 2);
-    t_d_cell *cell1 = create_cell(1, 1);
-
-    // Création d'une liste avec un maximum de 6 niveaux
-    t_d_list *main_list = create_list(6);
-
-    // Insertion des cellules (tous les cas)
-    insert_cell(main_list, cell3);
-    insert_cell(main_list, cell1);
-    insert_cell(main_list, cell5);
-    insert_cell(main_list, cell4);
-    insert_cell(main_list, cell2);
-
-    // Affichage de tous les niveaux de la liste
-    display_list(main_list);
-
-    // Libération de la mémoire
-    free(cell1);
-    free(cell2);
-    free(cell3);
-    free(cell4);
-    free(cell5);
-    free(main_list);
-*/
 
 
     // PARTIE 2 ********************************************************//
@@ -143,20 +113,18 @@ int main() {
 
 
 
-
-    // PARTIE 3*************************/
-
     int run_app = 1;
 
     while (run_app == 1) { // BOUCLE PRINCIPALE
 
-        printf("======================");
-        printf("CHOISSISSEZ LA PARTIE");
-        printf("======================");
+        printf("\n");
+        printf("======================\n");
+        printf("CHOISSISSEZ LA PARTIE\n");
+        printf("======================\n");
         printf("1. PARTIE 1 (Test)\n");
         printf("2. PARTIE 2 (Test de la liste levels)\n");
         printf("3. PARTIE 2 (Recherche avec timer)\n");
-        printf("4. AGENDA (PARTIE 3\n");
+        printf("4. AGENDA (PARTIE 3)\n");
         printf("5. Quitter\n");
 
         int choix_part;
@@ -165,6 +133,7 @@ int main() {
         switch (choix_part) {
 
             case 1: {   // PARTIE 1 (Test)
+                menu_part1();
                 break;
             }
 
