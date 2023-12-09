@@ -62,41 +62,25 @@ int main() {
                 printf("\nEntrez la valeur a chercher dans la liste :  ");
                 scanf("%d", &val);
 
-                printf("BOUCLE CLASSIQUE\n");
-                int resultat_classique = search_cell_classique(list_part2, val);
-
                 startTimer();
-
-
-                printf("\n[RECHERCHE CLASSIQUE]--> ");
-
-                if (resultat_classique == 1) {
-                    printf("La valeur %d a ete trouve\n", val);
-                } else {
-                    printf("La valeur %d n'est pas dans la liste\n", val);
+                for (int j = 0; j <= 100000; ++j) {
+                    search_cell_classique(list_part2,val );
                 }
                 stopTimer();
-                displayTime();
-                printf("\n");
 
-                // RECHERCHE OPTIMALE
+                char *time_classique = getTimeAsString();
 
                 startTimer();
-
-                int resultat_opti = search_cell_optimal(list_part2, val);
-                printf("\n[RECHERCHE OPTIMALE]---> ");
-
-                if (resultat_opti == 1) {
-                    printf("La valeur %d a ete trouve\n", val);
-                } else {
-                    printf("La valeur %d n'est pas dans la liste\n", val);
+                for (int j = 0; j <= 100000; ++j) {
+                    search_cell_optimal(list_part2,val );
                 }
                 stopTimer();
-                displayTime();
-                printf("\n");
+                char *time_opti = getTimeAsString();
+
+                printf("Valeur = %d | Classique: %s  Optimal: %s \n", val, time_classique, time_opti);
                 break;
             }
-            
+
                 case '3': {   // AGENDA (PARTIE 3)
                     t_input_list *contact_list = create_input_list(4);
                     menu_part3(contact_list);
