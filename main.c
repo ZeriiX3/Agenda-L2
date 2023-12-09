@@ -7,7 +7,6 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 // ************************************ IMPORT ************************************ //
 #include <stdio.h>
-#include <string.h>
 #include "fichier.h"
 #include "models.h"
 #include "affichages.h"
@@ -97,6 +96,7 @@ int main() {
                 printf("\n");
                 break;
             }
+            
                 case '3': {   // AGENDA (PARTIE 3)
                     t_input_list *contact_list = create_input_list(4);
                     menu_part3(contact_list);
@@ -111,7 +111,6 @@ int main() {
                 }
 
             }
-
         }
 
         return 0;
