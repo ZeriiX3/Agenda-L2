@@ -113,9 +113,9 @@ int main() {
 
 
 
-    int run_app = 1;
+    char run_app = '1';
 
-    while (run_app == 1) { // BOUCLE PRINCIPALE
+    while (run_app == '1') { // BOUCLE PRINCIPALE
 
         printf("\n");
         printf("======================\n");
@@ -127,32 +127,32 @@ int main() {
         printf("4. AGENDA (PARTIE 3)\n");
         printf("5. Quitter\n");
 
-        int choix_part;
-        scanf("%d",&choix_part);
+        char choix_part;
+        scanf(" %c", &choix_part);
 
         switch (choix_part) {
 
-            case 1: {   // PARTIE 1 (Test)
+            case '1': {   // PARTIE 1 (Test)
                 menu_part1();
                 break;
             }
 
-            case 2: {
+            case '2': {
                 break;  // PARTIE 2 (Test de la liste levels)
             }
 
-            case 3: {
+            case '3': {
                 break;  // PARTIE 2 (Recherche avec timer)
             }
 
-            case 4: {   // AGENDA (PARTIE 3)
+            case '4': {   // AGENDA (PARTIE 3)
                 t_input_list* contact_list = create_input_list(4);
                 menu_part3(contact_list);
                 break;
             }
 
-            case 5: {
-                run_app = 0;
+            case '5': {
+                run_app = '0';
                 break;
             }
 
