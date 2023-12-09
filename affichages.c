@@ -6,7 +6,6 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
 #include "affichages.h"
 #include "models.h"
-#include "timer.h"
 
 #include <stdio.h>
 
@@ -16,6 +15,33 @@ void menu_part1() {
     // PARTIE 1
     printf("PARTIE 1\n");
 
+    int nb_cell, val, max_niv, niv;
+    printf("Nombre de cellules que vous voulez : \n");
+    scanf("%d", &nb_cell);
+    printf("Niveau max de la liste : \n");
+    scanf("%d", &max_niv);
+
+    t_d_list *main_list = create_list(max_niv);
+
+    for (int i = 0; i < nb_cell; i++) {
+        printf("La valeur que vous voulez inserer dans la liste : \n");
+        scanf("%d", &val);
+        printf("Au combien-ieme niveau : \n");
+        scanf("%d", &niv);
+        while (niv > max_niv || niv == 0) {
+            printf("Niveau demande incorrect !\n");
+            printf("Ressaisissez un niveau pour la cellule de valeur %d :\n", val);
+            scanf("%d", &niv);
+        }
+        t_d_cell *cell = create_cell(val, niv);
+        insert_cell(main_list, cell);
+
+    }
+
+    // Affichage de tous les niveaux de la liste
+    display_list(main_list);
+
+    /*
     // Création de cellules avec des niveaux différents
     t_d_cell *cell1 = create_cell(1, 1);
     t_d_cell *cell2 = create_cell(2, 2);
@@ -23,25 +49,16 @@ void menu_part1() {
     t_d_cell *cell4 = create_cell(4, 4);
     t_d_cell *cell5 = create_cell(5, 5);
 
-    // Création d'une liste avec un maximum de 6 niveaux
-    t_d_list *main_list = create_list(6);
-
     // Insertion des cellules (tous les cas)
     insert_cell(main_list, cell3);
     insert_cell(main_list, cell1);
     insert_cell(main_list, cell5);
     insert_cell(main_list, cell4);
     insert_cell(main_list, cell2);
-
-    // Affichage de tous les niveaux de la liste
-    display_list(main_list);
+    */
 
     // Libération de la mémoire
-    free(cell1);
-    free(cell2);
-    free(cell3);
-    free(cell4);
-    free(cell5);
+
     free(main_list);
 
 }
