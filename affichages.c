@@ -47,39 +47,6 @@ void menu_part1() {
 }
 
 
-                /*startTimer();
-
-
-                printf("\n[RECHERCHE CLASSIQUE]--> ");
-
-                if (resultat_classique == 1) {
-                    printf("La valeur %d a ete trouve\n", val);
-                } else {
-                    printf("La valeur %d n'est pas dans la liste\n", val);
-                }
-                stopTimer();
-                displayTime();
-                printf("\n");
-
-                // RECHERCHE OPTIMALE
-
-                startTimer();
-
-                int resultat_opti = search_cell_optimal(list_part2, val);
-                printf("\n[RECHERCHE OPTIMALE]---> ");
-
-                if (resultat_opti == 1) {
-                    printf("La valeur %d a ete trouve\n", val);
-                } else {
-                    printf("La valeur %d n'est pas dans la liste\n", val);
-                }
-
-                stopTimer();
-                displayTime();
-                printf("\n");
-                break;*/
-
-
 
 // FONCTION POUR AFFICHER LE MENU DE LA PARTIE 3 SUR LE MAIN
 void menu_part3(t_input_list * contact_list) {
