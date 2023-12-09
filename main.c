@@ -24,7 +24,6 @@ int main() {
 
 
 
-
     // PARTIE 1 ********************************************************//
 
     /*printf("PARTIE 1\n\n");
@@ -59,7 +58,7 @@ int main() {
 
 
     // PARTIE 2 ********************************************************//
-
+    /*
     printf("PARTIE 2\n\n");
 
     int niv;
@@ -73,7 +72,7 @@ int main() {
 
 
     //---**********************RECHERCHE *****************************/
-
+    /*
     int val;
     printf("\nEntrez la valeur a chercher dans la liste :  ");
     scanf("%d", &val);
@@ -112,7 +111,7 @@ int main() {
     displayTime();
     printf("\n");
 
-
+*/
 
 
     // ------------------------------------------- BOUUUUUCLEEEEE -------------------------------------------
@@ -140,73 +139,64 @@ int main() {
     */
 
     // Mémoire
-    free(list_part2);
+    //free(list_part2);
 
 
 
 
     // PARTIE 3*************************/
 
-    /*
-    t_input_list* contact_list = create_input_list(4);
+    int run_app = 1;
 
-    int app_state = 1;
+    while (run_app == 1) { // BOUCLE PRINCIPALE
 
-    while (app_state == 1) {
+        printf("======================");
+        printf("CHOISSISSEZ LA PARTIE");
+        printf("======================");
+        printf("1. PARTIE 1 (Test)\n");
+        printf("2. PARTIE 2 (Test de la liste levels)\n");
+        printf("3. PARTIE 2 (Recherche avec timer)\n");
+        printf("4. AGENDA (PARTIE 3\n");
+        printf("5. Quitter\n");
 
-        printf("BONJOUR\n");
-        printf("Il y a %d contact(s) dans la liste\n", get_number_of_contacts(contact_list));
-        printf("Veuillez selectionner une fonctionnalite\n");
-        printf("1. Ajouter un contact\n");
-        printf("2. Chercher un contact\n");
-        printf("3. Afficher les contacts\n");
-        printf("4. Ajouter un rendez-vous\n");
-        printf("5. Affichez les rendez vous\n");
-        printf("6. Quitter\n");
+        int choix_part;
+        scanf("%d",&choix_part);
 
-        int choice = 0;
-        scanf("%d", &choice);
+        switch (choix_part) {
 
-        switch (choice) {
-
-            case 1: {
-                menu_add_contact(contact_list);
+            case 1: {   // PARTIE 1 (Test)
                 break;
             }
 
             case 2: {
-                menu_find_contact(contact_list);
-                break;
+                break;  // PARTIE 2 (Test de la liste levels)
             }
 
             case 3: {
-                menu_display_all_contacts(contact_list);
-                break;
+                break;  // PARTIE 2 (Recherche avec timer)
             }
 
-            case 4 : {
-                menu_add_appointment(contact_list);
+            case 4: {   // AGENDA (PARTIE 3)
+                t_input_list* contact_list = create_input_list(4);
+                menu_part3(contact_list);
                 break;
             }
 
             case 5: {
-                menu_display_appointment(contact_list);
-                break;
-            }
-
-            case 6: {
-                app_state = 0;
+                run_app = 0;
                 break;
             }
 
             default: {
-
-                printf("Choix invalide\n");
-                break;
+                printf("Entrez un chiffre valide");
             }
         }
+
     }
-*/
+
+
+
+
     return 0;
 }
 

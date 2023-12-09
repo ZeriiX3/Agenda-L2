@@ -5,7 +5,73 @@
 #include "affichages.h"
 #include "models.h"
 
+
 #include <stdio.h>
+
+
+void menu_part3(t_input_list * contact_list) {
+
+    int run_part3 = 1;
+
+    while (run_part3 == 1) {
+
+        printf("=====================");
+        printf("APPLICATION");
+        printf("=====================");
+        printf("\n");
+        printf("Il y a %d contact(s) dans la liste\n", get_number_of_contacts(contact_list));
+        printf("Veuillez selectionner une fonctionnalite\n");
+        printf("1. Ajouter un contact\n");
+        printf("2. Chercher un contact\n");
+        printf("3. Afficher les contacts\n");
+        printf("4. Ajouter un rendez-vous\n");
+        printf("5. Affichez les rendez vous\n");
+        printf("6. Quitter\n");
+
+        int choice = 0;
+        scanf("%d", &choice);
+
+        switch (choice) {
+
+            case 1: {
+                menu_add_contact(contact_list);
+                break;
+            }
+            case 2: {
+                menu_find_contact(contact_list);
+                break;
+            }
+            case 3: {
+                menu_display_all_contacts(contact_list);
+                break;
+            }
+            case 4 : {
+                menu_add_appointment(contact_list);
+                break;
+            }
+            case 5: {
+                menu_display_appointment(contact_list);
+                break;
+            }
+            case 6: {
+                run_part3 = 0;
+                break;
+            }
+            default: {
+                printf("Entrez un choix valide\n");
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 void menu_display_contact(t_contact* contact) {
 

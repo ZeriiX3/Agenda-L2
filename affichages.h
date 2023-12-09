@@ -6,6 +6,9 @@
 #define GESTION_AGENDA_AFFICHAGES_H
 
 #include "models.h"
+#include "fichier.h"
+
+void menu_part3(t_input_list * contact_list);
 
 void menu_add_contact(t_input_list* input_list);
 

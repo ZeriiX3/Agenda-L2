@@ -203,6 +203,7 @@ int search_cell_optimal(t_d_list* list, int value) {
         t_d_cell *temp = list->heads[i];
 
         while (temp != NULL) {
+
             if (temp->value == value) {
                 return 1;
             } else if (temp->value < value) {
@@ -214,5 +215,4 @@ int search_cell_optimal(t_d_list* list, int value) {
     }
     return 0;
 }
-
 

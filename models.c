@@ -147,11 +147,13 @@ void insert_input(t_contact * contact, t_input_list* liste) {
     // Insérer le contact dans la liste par ordre alphabétique uniquement sur le niveau 0
     t_input* entree = create_input(contact, 0);
 
+    // Si il n'y a pas de contacts dans la liste
     if(liste->tetes[0] == NULL) {
         liste->tetes[0] = entree;
         return;
     }
 
+    // Compare les 2 noms
     if(is_name_before(nom, get_name_formatted(liste->tetes[0]->contact))) {
         entree->suivant = liste->tetes[0];
         liste->tetes[0] = entree;
