@@ -18,7 +18,7 @@ char* scan_string() {
 }
 
 // Fonction pour obtenir le nom formaté d'un contact (nom_de_famille_prenom)
-char* get_name_formatted(t_contact* contact) {
+char* formatted_name(t_contact* contact) {
     // Allouer de la mémoire pour la nouvelle chaîne
     char* name = (char*) malloc(sizeof(char) * (strlen(contact->nom_de_famille) + strlen(contact->prenom) + 2)); // +2 pour le tiret bas et le caractère nul
 
@@ -43,7 +43,7 @@ char* get_name_formatted(t_contact* contact) {
 }
 
 // Fonction pour vérifier si str1 vient avant str2 dans l'ordre alphabétique
-int is_name_before(char* str1, char* str2) {
+int order_name(char* str1, char* str2) {
     int i = 0;
     int j = 0;
 
@@ -172,7 +172,7 @@ void insert_appointment(t_appointment *rendez_vous, t_input *input) {
 // Fonction pour insérer un contact dans la liste
 void insert_input(t_contact *contact, t_input_list *liste) {
     // Obtenir le nom formaté du contact à insérer
-    char *nom = get_name_formatted(contact);
+    char *nom = formatted_name(contact);
 
     // Vérifier si le contact est déjà dans la liste
     for (int i = 0; i < liste->niveau_max; i++) {
@@ -182,7 +182,7 @@ void insert_input(t_contact *contact, t_input_list *liste) {
         // Parcourir la liste à ce niveau
         while (tmp != NULL) {
             // Comparer le nom formaté du contact actuel avec le nom du contact à insérer
-            if (strcmp(get_name_formatted(tmp->contact), nom) == 0) {
+            if (strcmp(formatted_name(tmp->contact), nom) == 0) {
                 // Afficher un message et sortir de la fonction si le contact est déjà présent
                 printf("Contact déjà présent dans la liste.\n");
                 return;
@@ -204,7 +204,7 @@ void insert_input(t_contact *contact, t_input_list *liste) {
     }
 
     // Comparer les noms pour déterminer la position d'insertion
-    if (is_name_before(nom, get_name_formatted(liste->tetes[0]->contact))) {
+    if (order_name(nom, formatted_name(liste->tetes[0]->contact))) {
         entree->suivant = liste->tetes[0];
         liste->tetes[0] = entree;
         return;
@@ -213,7 +213,7 @@ void insert_input(t_contact *contact, t_input_list *liste) {
     t_input *tmp = liste->tetes[0];
 
     // Parcourir la liste pour trouver la position d'insertion
-    while (tmp->suivant != NULL && is_name_before(get_name_formatted(tmp->suivant->contact), nom)) {
+    while (tmp->suivant != NULL && order_name(formatted_name(tmp->suivant->contact), nom)) {
         tmp = tmp->suivant;
     }
 
