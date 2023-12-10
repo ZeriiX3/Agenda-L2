@@ -17,7 +17,7 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 // BOUCLE PRINCIPALE
 
 int main() {
-    /*
+
     // On a, à la fin, l'algorithme pour mesurer le temps d'exécution pour l'enregistrer dans un fichier
 
     char run_app = '1';
@@ -94,7 +94,8 @@ int main() {
 
         }
     }
-    */
+
+    /*
 
     // Algorithme de recherche ( Je le lance sans le code principal avec des /* ~~~ */ )
     // PS: l'algo prend un peu de temps...
@@ -125,7 +126,7 @@ int main() {
         level += 1;
     }
     fclose(log_file);
-
+    */
 
     return 0;
 }
