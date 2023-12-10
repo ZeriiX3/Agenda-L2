@@ -6,40 +6,40 @@
 #include <malloc.h>
 #include "timer.h"
 
-// start the timer
+// Lance le chronomètre
 void startTimer()
 {
     _timer._start = clock();
 }
 
-// stop the timer and compute the duration in milliseconds
+// Arrêtez le chronomètre et calculez la durée en millisecondes.
 void stopTimer()
 {
     _timer._end = clock();
-    // compute the duration in milliseconds wrt CLOCKS_PER_SEC
+    // Calculez la durée en millisecondes par rapport à CLOCKS_PER_SEC
     _timer._msecs = (1000.0 * (double) (_timer._end - _timer._start)) / CLOCKS_PER_SEC;
 }
 
-// display the time
+// Afficher l'heure
 void displayTime()
 {
-    // display the time using getTimeAsString()
+    // Afficher l'heure en utilisant getTimeAsString()
     printf("%s\n", getTimeAsString());
     return;
 }
 
-// return a string with the time in seconds and milliseconds
+// Retournez une chaîne de caractères avec le temps en secondes et en millisecondes
 char *getTimeAsString()
 {
-    // return a string with the time in seconds and milliseconds
+    // Retournez une chaîne de caractères avec le temps en secondes et en millisecondes
     // format : integers, with 3 digits, fill with 0
-    // example : 001,123
+    // exemple : 001,123
 
-    // use sprintf to write the string in a dynamically allocated buffer
+    // Utilisez sprintf pour écrire la chaîne dans un tampon alloué dynamiquement
     char *buffer = (char *)malloc(10*sizeof(char));
-    // use sprintf to write the string in a dynamically allocated buffer
+    // Utilisez sprintf pour écrire la chaîne dans un tampon alloué dynamiquement
     sprintf(buffer, "[%g] %03d,%03d", _timer._msecs, (int)(_timer._msecs)/1000, (int)(_timer._msecs)%1000);
 
-    // return the buffer
+    // Retournez le tampon
     return buffer;
 }
