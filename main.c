@@ -95,11 +95,11 @@ int main() {
         }
     }
 
-    /*
+
 
     // Algorithme de recherche ( Je le lance sans le code principal avec des /* ~~~ */ )
     // PS: l'algo prend un peu de temps...
-
+    /*
     FILE *log_file = fopen("log.txt","w");
     char format[] = "%d\t%s\t%s\n" ;
     int level = 6;
