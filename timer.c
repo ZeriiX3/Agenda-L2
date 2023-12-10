@@ -20,10 +20,10 @@ void stopTimer()
     _timer._msecs = (1000.0 * (double) (_timer._end - _timer._start)) / CLOCKS_PER_SEC;
 }
 
-// Afficher l'heure
+// Afficher l'heures
 void displayTime()
 {
-    // Afficher l'heure en utilisant getTimeAsString()
+    // Afficher l'heures en utilisant getTimeAsString()
     printf("%s\n", getTimeAsString());
     return;
 }

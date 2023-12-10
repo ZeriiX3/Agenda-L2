@@ -9,7 +9,7 @@
 typedef struct s_contact
 {
     char* prenom;
-    char* nom_de_famille;
+    char* nom;
 
 } t_contact;
 
@@ -17,61 +17,67 @@ typedef struct s_contact
 typedef struct s_appointment
 {
     char* objet;
-    int heure;
-    int minute;
-    int jour;
+    int heures;
+    int minutes;
+    int jours;
     int mois;
-    int annee;
-    struct s_appointment *suivant;
+    int annees;
+    struct s_appointment *next;
 
 } t_appointment;
 
-// Déclaration préalable de la structure t_rendez_vous
-typedef struct t_rendez_vous t_rendez_vous;
+// Déclaration préalable de la structure t_rdv
+typedef struct t_rdv t_rdv;
 
 // Structure représentant une entrée (contact) dans la liste
-typedef struct s_input
-{
+typedef struct s_entry {
     t_contact* contact;
-    t_appointment* rendez_vous;
-
-    struct s_input *suivant;
+    t_appointment* rdv;
+    struct s_entry *next;
     int niveau;
-
-    t_rendez_vous *liste_rendez_vous;
-} t_input;
+    t_rdv *list_rdv;
+} t_entry;
 
 // Structure représentant la liste d'entrées (contacts)
-typedef struct s_input_list
-{
-    int niveau_max;
-    t_input **tetes;
+typedef struct s_entry_list {
+    int max_niv;
+    t_entry **heads;
 
-} t_input_list;
+} t_entry_list;
 
-// Déclaration de fonction pour créer un rendez-vous
-t_appointment* create_appointment(char*, int, int, int, int, int);
-// Déclaration de fonction pour insérer un rendez-vous dans une entrée
-void insert_appointment(t_appointment*, t_input *);
-// Déclaration de fonction pour vérifier l'ordre alphabétique des noms
-int is_name_before(char*, char*);
-// Déclaration de fonction pour trouver un contact dans la liste
-t_input * find_contact(char*, t_input_list*);
+// Fonction pour saisir une chaîne de caractères
+char* scan_str();
 
-// Déclaration de fonction pour créer un contact
-t_contact* create_contact(char*, char*);
-// Déclaration de fonction pour créer une entrée avec un contact
-t_input* create_input(t_contact*, int);
-// Déclaration de fonction pour créer une liste d'entrées
-t_input_list* create_input_list(int);
-// Déclaration de fonction pour insérer un contact dans la liste
-void insert_input(t_contact *, t_input_list*);
-// Déclaration de fonction pour afficher la liste d'entrées
-void display_input_list(t_input_list*);
+// Fonction pour obtenir le nom formaté d'un contact en majuscules et minuscules
+char* convert_maj_min(t_contact *contact);
 
-// Déclaration de fonction pour saisir une chaîne de caractères
-char* scan_string();
-// Déclaration de fonction pour obtenir le nom formaté d'un contact
-char* get_name_formatted(t_contact*);
+// Fonction pour créer un contact
+t_contact* create_contact(char* prenom, char* nom);
+
+// Fonction pour créer une entrée avec un contact
+t_entry* create_input(t_contact* contact, int niv);
+
+// Fonction pour créer une liste d'entrées
+t_entry_list* create_listInput(int niv);
+
+// Fonction pour insérer un contact dans la liste
+void insert_entry(t_contact * contact, t_entry_list* liste);
+
+// Fonction pour afficher la liste d'entrées
+void display_input_list(t_entry_list* liste);
+
+// Fonction pour créer un rendez-vous
+t_appointment* create_rdv(char* objet, int heure, int minute, int jour, int mois, int annee);
+
+// Fonction pour insérer un rendez-vous dans une entrée
+void insert_rdv(t_appointment *rdv, t_entry *input);
+
+// Fonction pour vérifier l'ordre alphabétique des noms
+int si_nom_avant(char* str_1, char* str_2);
+
+// Fonction pour trouver un contact dans la liste
+t_entry* find_contact(char* nom, t_entry_list* liste);
+
+
 
 #endif //GESTION_AGENDA_MODELS_H

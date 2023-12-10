@@ -48,7 +48,7 @@ void menu_part1() {
 
 
 // FONCTION POUR AFFICHER LE MENU DE LA PARTIE 3 SUR LE MAIN
-void menu_part3(t_input_list * contact_list) {
+void menu_part3(t_entry_list * contact_list) {
 
     char run_part3 = '1';
 
@@ -58,7 +58,7 @@ void menu_part3(t_input_list * contact_list) {
         printf("APPLICATION\n");
         printf("============\n");
         printf("\n");
-        printf("Il y a %d contact(s) dans la liste\n", get_number_of_contacts(contact_list));
+        printf("Il y a %d contact(s) dans la liste\n", get_nb_contact(contact_list));
         printf("Veuillez selectionner une fonctionnalite\n");
         printf("1) Ajouter un contact\n");
         printf("2) Chercher un contact\n");
@@ -67,15 +67,16 @@ void menu_part3(t_input_list * contact_list) {
         printf("5) Affichez les rendez vous\n");
         printf("6) Quitter\n");
 
+        // Pour lire toute la ligne d'entrée de l'utilisateur et pas chaque caractère, ce qui créer une boucle pour chaque str
         char choix = 0;
-        char input[15];  // Vous pouvez ajuster la taille en fonction de vos besoins
+        char input[15];
         fgets(input, sizeof(input), stdin);
         sscanf(input, " %c", &choix);
 
         switch (choix) {
 
             case '1': {
-                menu_add_contact(contact_list);
+                menu_ajout_contact(contact_list);
                 break;
             }
             case '2': {
@@ -83,15 +84,15 @@ void menu_part3(t_input_list * contact_list) {
                 break;
             }
             case '3': {
-                menu_display_all_contacts(contact_list);
+                menu_display_all_contact(contact_list);
                 break;
             }
             case '4' : {
-                menu_add_appointment(contact_list);
+                menu_add_rdv(contact_list);
                 break;
             }
             case '5': {
-                menu_display_appointment(contact_list);
+                menu_display_rdv(contact_list);
                 break;
             }
             case '6': {
@@ -99,7 +100,7 @@ void menu_part3(t_input_list * contact_list) {
                 break;
             }
             default: {
-                printf("Entrez un choix valide\n");
+                printf("Choix valide\n");
                 break;
             }
         }
@@ -107,179 +108,155 @@ void menu_part3(t_input_list * contact_list) {
 }
 
 
-
 // FONCTIONS
 
 
-void menu_display_contact(t_contact* contact) {
-
-    printf("Nom : %s\n", contact->nom_de_famille);
-    printf("Prenom : %s\n", contact->prenom);
-
-    return;
-}
-
-void menu_add_contact(t_input_list* input_list) {
+void menu_ajout_contact(t_entry_list* entry_list) {
 
     printf("Entrer le nom de famille du contact : ");
-    char* last_name = scan_string();
-
+    char* nom = scan_str();
     printf("Entrer le prenom du contact : ");
-    char* first_name = scan_string();
+    char* prenom = scan_str();
 
-    t_contact* contact = create_contact(first_name, last_name);
+    t_contact* contact = create_contact(prenom, nom);
+    insert_entry(contact, entry_list);
 
-    insert_input(contact, input_list);
-
-    return;
 }
 
+void menu_display_contact(t_contact* contact) {
+    printf("Nom : %s\n", contact->nom);
+    printf("Prenom : %s\n", contact->prenom);
+}
 
-void menu_find_contact(t_input_list* input_list) {
+void menu_display_all_contact(t_entry_list* entry_list) {
 
+    // Affiche les contacts au niveau 0
+    t_entry* temp = entry_list->heads[0];
+    if (temp == NULL) {
+        printf("Aucun contact dans la liste.\n");
+        return;
+    }
+    while(temp != NULL) {
+        menu_display_contact(temp->contact);
+        temp = temp->next;
+    }
+}
+
+void menu_find_contact(t_entry_list* entry_list) {
     printf("Entrer le nom de famille du contact : ");
-    char* last_name = scan_string();
+    char* nom = scan_str();
 
-    t_input* input = find_contact(last_name, input_list);
+    t_entry* input = find_contact(nom, entry_list);
 
     if(input == NULL) {
         printf("Le contact n'existe pas.\n");
     } else {
         menu_display_contact(input->contact);
     }
-
-    return;
 }
 
-void menu_display_all_contacts(t_input_list* input_list) {
 
-    // Display contact on level 0
-    t_input* tmp = input_list->tetes[0];
-
-    if(tmp == NULL) {
-        printf("Aucun contact dans la liste.\n");
-        return;
-    }
-
-    while(tmp != NULL) {
-        menu_display_contact(tmp->contact);
-        tmp = tmp->suivant;
-    }
-
-    return;
-}
-
-void menu_add_appointment(t_input_list* input_list) {
+void menu_add_rdv(t_entry_list* entry_list) {
 
     printf("Entrer le nom de famille du contact : ");
-    char* last_name = scan_string();
+    char* nom = scan_str();
 
-    t_input* input = find_contact(last_name, input_list);
+    t_entry* input = find_contact(nom, entry_list);
 
-    if(input == NULL) {
+    if (input == NULL) {
         printf("Le contact n'existe pas, voulez vous le creer (0 = NON ; 1 = OUI)\n");
-        int choice;
-        scanf("%d", &choice);
+        int choix;
+        scanf("%d", &choix);
 
-        if((int) choice  == 1) {
-            menu_add_contact(input_list);
+        if((int) choix == 1) {
+            menu_ajout_contact(entry_list);
         } else {
             return;
         }
     }
+    input = find_contact(nom, entry_list);
 
+    printf("Objet du rendez-vous : ");
+    char* objet = scan_str();
 
-    input = find_contact(last_name, input_list);
+    printf("Heure du rendez-vous : ");
+    int heure;
+    scanf("%d", &heure);
 
-    printf("Entrer l'objet du rendez-vous : ");
-    char* object = scan_string();
-
-    printf("Entrer l'heure du rendez-vous : ");
-    int hour;
-    scanf("%d", &hour);
-
-    if (hour < 0 || hour > 23)
+    if (heure < 0 || heure > 23)
     {
-        printf("L'heure doit etre comprise entre 0 et 23.\n");
-        scanf("%d",&hour);
+        printf("L'heures doit etre comprise entre 0 et 23.\n");
+        scanf("%d", &heure);
     }
 
-    printf("Entrer les minutes du rendez-vous : ");
+    printf("Minutes du rendez-vous : ");
     int minute;
     scanf("%d", &minute);
-
-    while(minute < 0 || minute > 59)
+    if (minute < 0 || minute > 59)
     {
-        printf("Les doivent etre comprise entre 0 et 59.\n");
+        printf("Les minutes doivent etre comprise entre 0 et 59.\n");
         scanf("%d",&minute);
     }
 
-    printf("Entrer le jour du rendez-vous : ");
-    int day;
-    scanf("%d", &day);
-
-    if (day < 1 || day > 31) {
-        printf("Le jour doit etre compris entre 1 et 31.\n");
-        scanf("%d", &day);
+    printf("Jour du rendez-vous : ");
+    int jour;
+    scanf("%d", &jour);
+    if (jour < 1 || jour > 31) {
+        printf("Le jours doit etre compris entre 1 et 31.\n");
+        scanf("%d", &jour);
     }
 
-    printf("Entrer le mois du rendez-vous : ");
-    int month;
-    scanf("%d", &month);
-
-    if(month < 1 || month > 12) {
-        printf("Le mois doit être compris entre 1 et 12.\n");
+    printf("Mois du rendez-vous : ");
+    int mois;
+    scanf("%d", &mois);
+    if (mois < 1 || mois > 12) {
+        printf("Le mois doit etre compris entre 1 et 12.\n");
         return;
     }
 
-    printf("Entrer l'annee du rendez-vous : ");
-    int year;
-    scanf("%d", &year);
-
-    if(year < 0) {
-        printf("L'année doit être supérieure à 0.\n");
+    printf("Annee du rendez-vous : ");
+    int annee;
+    scanf("%d", &annee);
+    if (annee < 0) {
+        printf("L'annees doit être superieure à 0.\n");
         return;
     }
 
-    t_appointment* appointment = create_appointment(object, hour, minute, day, month, year);
-    insert_appointment(appointment, input);
+    t_appointment* rdv = create_rdv(objet, heure, minute, jour, mois, annee);
+    insert_rdv(rdv, input);
 
 }
 
-void menu_display_appointment(t_input_list* input_list) {
+void menu_display_rdv(t_entry_list* entry_list) {
 
     printf("Entrer le nom de famille du contact : ");
-    char* last_name = scan_string();
-    t_input* input = find_contact(last_name, input_list);
+    char* nom = scan_str();
+    t_entry* input = find_contact(nom, entry_list);
 
-    if(input == NULL) {
+    if (input == NULL) {
         printf("Le contact n'existe pas.\n");
         return;
     }
 
-    t_appointment* tmp = input->rendez_vous;
-
-    while(tmp != NULL) {
-        printf("Objet : %s\n", tmp->objet);
-        printf("Heure : %d:%d\n", tmp->heure, tmp->minute);
-        printf("Date : %d/%d/%d\n", tmp->jour, tmp->mois, tmp->annee);
-        tmp = tmp->suivant;
+    t_appointment* temp = input->rdv;
+    while(temp != NULL) {
+        printf("Objet : %s\n", temp->objet);
+        printf("Heure : %d:%d\n", temp->heures, temp->minutes);
+        printf("Date : %d/%d/%d\n", temp->jours, temp->mois, temp->annees);
+        temp = temp->next;
     }
     return;
 }
 
-int get_number_of_contacts(t_input_list* input_list) {
+int get_nb_contact(t_entry_list* entry_list) {
 
-    int number_of_contacts = 0;
-
-    for(int i = 0; i < input_list->niveau_max; i++) {
-
-        t_input* tmp = input_list->tetes[i];
-
-        while(tmp != NULL) {
-            number_of_contacts++;
-            tmp = tmp->suivant;
+    int nb_contact = 0;
+    for (int i = 0; i < entry_list->max_niv; i++) {
+        t_entry* temp = entry_list->heads[i];
+        while (temp != NULL) {
+            nb_contact++;
+            temp = temp->next;
         }
     }
-    return number_of_contacts;
+    return nb_contact;
 }

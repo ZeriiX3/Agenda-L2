@@ -42,24 +42,24 @@ t_d_cell* create_cell(int val, int lvl) {
 
 t_d_list *create_list(int max_lvl) {
 
+    // Allocation mémoire
     t_d_list *list = (t_d_list*) malloc(sizeof(t_d_list));
 
     list->max_level = max_lvl;
+    // Initialisation d'un tableau de pointeur cellules
     list->heads = (t_d_cell**) malloc(sizeof(t_d_cell*) * max_lvl);
 
+    // Tout mettre à NULL pour éviter les potentiels bug
     for(int i = 0; i < max_lvl; i++) {
-
         list->heads[i] = NULL;
-
     }
-
     return list;
 }
 
 void cell_atHead(t_d_list* list, t_d_cell* cell) {
     int temp;
 
-    // dans le cas où level > max lvl possible de la liste
+    // Dans le cas où level > max lvl possible de la liste
     if (cell->level > list->max_level) {
         temp = list->max_level;
     } else {
@@ -77,7 +77,7 @@ void cell_atHead(t_d_list* list, t_d_cell* cell) {
 void display_cells(t_d_list * list, int level) {
     printf("[list head_%d @-]", level);
 
-    // Traverse the list and display cells at the specified level
+    // Traverse la liste et affiche la cellule
     t_d_cell *current = list->heads[0];
 
     while (current != NULL) {
@@ -115,7 +115,7 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
         temp = list->heads[i];
 
-        // Trouve l'emplacement correct pour insérer la cellule de manière croissante
+        // Trouve l'emplacement correct pour insérer la cellule de manière croissante en parcourant la liste
         while (temp->next[i] != NULL && temp->next[i]->value < cell->value) {
             temp = temp->next[i];
         }
@@ -154,20 +154,20 @@ t_d_list* create_levels_list(int niv) {
         pas *= 2;
     }
 
+
     // PARTIE INSERTION
     t_d_list* level_list = create_list(niv);
 
-
     // Boucle pour créer et ajouter une cellule à la liste
-
     for (int k = 0; k < cell_number; k++) {
-        t_d_cell *cell = create_cell(k + 1, levels[k]);
-        insert_cell(level_list, cell);
+        t_d_cell *cell = create_cell(k + 1, levels[k]); // Cellule en fonction du tableau levels
+        insert_cell(level_list, cell);  // Insertion de la cellule qui vient d'être créée
     }
     return level_list;
 
 }
 
+// On affiche juste la liste
 void display_levels_list(t_d_list* list) {
     // Affichage de la liste
     display_list(list);
@@ -191,7 +191,7 @@ int search_cell_classique(t_d_list* list, int value) {
     }
 }
 
-
+// La recherche n'est pas celle demandée... mais nous avons tenté
 // Recherche dichotomique au niveau le plus élevé
 int search_cell_optimal(t_d_list* list, int value) {
     // Initialisation du niveau courant au niveau le plus élevé
@@ -217,5 +217,3 @@ int search_cell_optimal(t_d_list* list, int value) {
 
     return 0;    // La cellule n'a pas été trouvée
 }
-
-

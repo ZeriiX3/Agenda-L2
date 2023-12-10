@@ -55,13 +55,14 @@ int main() {
                 t_d_list *list_part2 = create_levels_list(niv);
                 display_levels_list(list_part2);
 
-                //---**********************RECHERCHE *****************************
+                // --------------------- RECHERCHE ---------------------------- //
                 int val;
                 printf("\nEntrez la valeur a chercher dans la liste :  ");
                 scanf("%d", &val);
 
                 printf("On va faire 10000 recherches\n");
                 startTimer();
+                // On fait là une recherche classique
                 for (int j = 0; j <= 10000; ++j) {
                     search_cell_classique(list_part2,val);
                 }
@@ -70,6 +71,7 @@ int main() {
                 char *time_classique = getTimeAsString();
 
                 startTimer();
+                // On fait là une recherche optimale
                 for (int j = 0; j <= 10000; ++j) {
                     search_cell_optimal(list_part2,val);
                 }
@@ -80,7 +82,7 @@ int main() {
                 break;
             }
             case '3': {   // AGENDA (PARTIE 3)
-                t_input_list *contact_list = create_input_list(4);
+                t_entry_list *contact_list = create_listInput(4);
                 menu_part3(contact_list);
                 break;
             }
