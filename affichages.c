@@ -218,9 +218,9 @@ void menu_add_appointment(t_input_list* input_list) {
     int day;
     scanf("%d", &day);
 
-    if(day < 1 || day > 31) {
-        printf("Le jour doit être compris entre 1 et 31.\n");
-        return;
+    while(day < 1 || day > 31) {
+        printf("Le jour doit etre compris entre 1 et 31.\n");
+        scanf("%d", &day);
     }
 
     printf("Entrer le mois du rendez-vous : ");
@@ -284,4 +284,3 @@ int get_number_of_contacts(t_input_list* input_list) {
     }
     return number_of_contacts;
 }
-

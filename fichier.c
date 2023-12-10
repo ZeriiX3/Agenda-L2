@@ -175,36 +175,47 @@ void display_levels_list(t_d_list* list) {
 
 // Recherche classique dans le niveau 0
 int search_cell_classique(t_d_list* list, int value) {
+    // Début de la recherche à partir du premier élément du niveau 0
     t_d_cell* current = list->heads[0];
 
+    // Parcours de la liste jusqu'à la fin ou jusqu'à ce que la valeur actuelle soit supérieure à la valeur recherchée
     while (current != NULL && current->value < value) {
         current = current->next[0];
     }
 
+    // Vérification si la cellule avec la valeur recherchée a été trouvée
     if (current != NULL && current->value == value) {
-        return 1;	// La cellule avec la valeur recherchée a été trouvée
+        return 1;    // La cellule avec la valeur recherchée a été trouvée
     } else {
-        return 0;	// La cellule n'a pas été trouvée
+        return 0;    // La cellule n'a pas été trouvée
     }
 }
 
+
 // Recherche dichotomique au niveau le plus élevé
 int search_cell_optimal(t_d_list* list, int value) {
+    // Initialisation du niveau courant au niveau le plus élevé
     int currentLevel = list->max_level - 1;
+
+    // Début de la recherche à partir du premier élément du niveau le plus élevé
     t_d_cell* current = list->heads[currentLevel];
 
+    // Boucle principale pour parcourir les niveaux de la liste
     while (currentLevel >= 0) {
+        // Parcours de la liste jusqu'à la fin ou jusqu'à ce que la valeur actuelle soit supérieure à la valeur recherchée
         while (current != NULL && current->value < value) {
             current = current->next[currentLevel];
         }
 
+        // Vérification si la cellule avec la valeur recherchée a été trouvée
         if (current != NULL && current->value == value) {
-            return 1;	// La cellule avec la valeur recherchée a été trouvée
+            return 1;    // La cellule avec la valeur recherchée a été trouvée
         } else {
-            currentLevel--;
+            currentLevel--; // Passage au niveau inférieur
         }
     }
 
-    return 0;	// La cellule n'a pas été trouvée
+    return 0;    // La cellule n'a pas été trouvée
 }
+
 
