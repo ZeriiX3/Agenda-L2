@@ -4,10 +4,14 @@ Octobre - Décembre / 2023
 
 Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 
+
+// ************************************ IMPORT ************************************ //
 #include "affichages.h"
 #include "models.h"
 
 #include <stdio.h>
+// ******************************************************************************** //
+
 
 
 // FONCTION POUR AFFICHER LE MENU DE LA PARTIE 1 SUR LE MAIN

@@ -1,9 +1,17 @@
+/* Project C: Gestion d'un agenda
+Professeurs: Mourad KMIMECH, Nicolas FLASQUE, Rado RAKOTONARIVO
+Octobre - Décembre / 2023
+
+Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
+
+// ************************************ IMPORT ************************************ //
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-
 #include "models.h"
+// ******************************************************************************** //
+
 
 // Fonction pour saisir une chaîne de caractères depuis la console
 char* scan_str() {
