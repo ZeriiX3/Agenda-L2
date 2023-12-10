@@ -41,24 +41,6 @@ void menu_part1() {
     // Affichage de tous les niveaux de la liste
     display_list(main_list);
 
-    /*
-    // Création de cellules avec des niveaux différents
-    t_d_cell *cell1 = create_cell(1, 1);
-    t_d_cell *cell2 = create_cell(2, 2);
-    t_d_cell *cell3 = create_cell(3, 3);
-    t_d_cell *cell4 = create_cell(4, 4);
-    t_d_cell *cell5 = create_cell(5, 5);
-
-    // Insertion des cellules (tous les cas)
-    insert_cell(main_list, cell3);
-    insert_cell(main_list, cell1);
-    insert_cell(main_list, cell5);
-    insert_cell(main_list, cell4);
-    insert_cell(main_list, cell2);
-    */
-
-    // Libération de la mémoire
-
     free(main_list);
 
 }

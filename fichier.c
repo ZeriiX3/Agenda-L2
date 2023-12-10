@@ -137,7 +137,8 @@ t_d_list* create_levels_list(int niv) {
 
     // PARTIE TABLEAU
     int cell_number = pow(2, niv) - 1;  // Initialise le nombre de cellules
-    int levels[cell_number];
+    int *levels = (int*)malloc(cell_number * sizeof(int));
+
 
     // Initialise un tableau de 1 (pas 0 car le 1 = premier et pas niveau 1)
     for (int i = 0; i < cell_number; i++) {
@@ -154,7 +155,6 @@ t_d_list* create_levels_list(int niv) {
     }
 
     // PARTIE INSERTION
-    int temp = niv;
     t_d_list* level_list = create_list(niv);
 
 
@@ -173,46 +173,38 @@ void display_levels_list(t_d_list* list) {
     display_list(list);
 }
 
-
-
-// Recherche
-
-
-
-
+// Recherche classique dans le niveau 0
 int search_cell_classique(t_d_list* list, int value) {
+    t_d_cell* current = list->heads[0];
 
-    t_d_cell *temp = list->heads[0];
-
-    while (temp != NULL && temp->value < value) {
-        temp = temp->next[0];
+    while (current != NULL && current->value < value) {
+        current = current->next[0];
     }
 
-    if (temp != NULL && temp->value == value) {
-        return 1;
+    if (current != NULL && current->value == value) {
+        return 1;	// La cellule avec la valeur recherchée a été trouvée
     } else {
-        return 0;
+        return 0;	// La cellule n'a pas été trouvée
     }
 }
 
-
+// Recherche dichotomique au niveau le plus élevé
 int search_cell_optimal(t_d_list* list, int value) {
+    int currentLevel = list->max_level - 1;
+    t_d_cell* current = list->heads[currentLevel];
 
-    for (int i = list->max_level - 1; i >= 0; i--) {
+    while (currentLevel >= 0) {
+        while (current != NULL && current->value < value) {
+            current = current->next[currentLevel];
+        }
 
-        t_d_cell *temp = list->heads[i];
-
-        while (temp != NULL) {
-
-            if (temp->value == value) {
-                return 1;
-            } else if (temp->value < value) {
-                temp = temp->next[i];
-            } else {
-                break;  // Sortir si la valeur dépasse celle recherchée
-            }
+        if (current != NULL && current->value == value) {
+            return 1;	// La cellule avec la valeur recherchée a été trouvée
+        } else {
+            currentLevel--;
         }
     }
-    return 0;
+
+    return 0;	// La cellule n'a pas été trouvée
 }
 
