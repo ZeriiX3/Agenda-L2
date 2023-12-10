@@ -116,7 +116,6 @@ void menu_part3(t_entry_list * contact_list) {
 
 
 void menu_ajout_contact(t_entry_list* entry_list) {
-
     printf("Entrer le nom de famille du contact : ");
     char* nom = scan_str();
     printf("Entrer le prenom du contact : ");
@@ -124,7 +123,6 @@ void menu_ajout_contact(t_entry_list* entry_list) {
 
     t_contact* contact = create_contact(prenom, nom);
     insert_entry(contact, entry_list);
-
 }
 
 void menu_display_contact(t_contact* contact) {
@@ -151,7 +149,6 @@ void menu_find_contact(t_entry_list* entry_list) {
     char* nom = scan_str();
 
     t_entry* input = find_contact(nom, entry_list);
-
     if(input == NULL) {
         printf("Le contact n'existe pas.\n");
     } else {
@@ -166,7 +163,6 @@ void menu_add_rdv(t_entry_list* entry_list) {
     char* nom = scan_str();
 
     t_entry* input = find_contact(nom, entry_list);
-
     if (input == NULL) {
         printf("Le contact n'existe pas, voulez vous le creer (0 = NON ; 1 = OUI)\n");
         int choix;
@@ -206,7 +202,7 @@ void menu_add_rdv(t_entry_list* entry_list) {
     int jour;
     scanf("%d", &jour);
     if (jour < 1 || jour > 31) {
-        printf("Le jours doit etre compris entre 1 et 31.\n");
+        printf("Le jour doit etre compris entre 1 et 31.\n");
         scanf("%d", &jour);
     }
 
@@ -228,7 +224,6 @@ void menu_add_rdv(t_entry_list* entry_list) {
 
     t_appointment* rdv = create_rdv(objet, heure, minute, jour, mois, annee);
     insert_rdv(rdv, input);
-
 }
 
 void menu_display_rdv(t_entry_list* entry_list) {
@@ -236,12 +231,10 @@ void menu_display_rdv(t_entry_list* entry_list) {
     printf("Entrer le nom de famille du contact : ");
     char* nom = scan_str();
     t_entry* input = find_contact(nom, entry_list);
-
     if (input == NULL) {
         printf("Le contact n'existe pas.\n");
         return;
     }
-
     t_appointment* temp = input->rdv;
     while(temp != NULL) {
         printf("Objet : %s\n", temp->objet);
@@ -253,7 +246,6 @@ void menu_display_rdv(t_entry_list* entry_list) {
 }
 
 int get_nb_contact(t_entry_list* entry_list) {
-
     int nb_contact = 0;
     for (int i = 0; i < entry_list->max_niv; i++) {
         t_entry* temp = entry_list->heads[i];

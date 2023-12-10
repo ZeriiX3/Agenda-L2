@@ -56,7 +56,7 @@ t_d_list *create_list(int max_lvl) {
     return list;
 }
 
-void cell_atHead(t_d_list* list, t_d_cell* cell) {
+void cell_at_head(t_d_list* list, t_d_cell* cell) {
     int temp;
 
     // Dans le cas où level > max lvl possible de la liste
@@ -109,10 +109,9 @@ void insert_cell(t_d_list* list, t_d_cell* cell) {
 
     // Vérifie si on peut insérer en tête
     if (list->heads[i] == NULL || list->heads[i]->value > cell->value) {
-        cell_atHead(list, cell);
+        cell_at_head(list, cell);
 
     } else {
-
         temp = list->heads[i];
 
         // Trouve l'emplacement correct pour insérer la cellule de manière croissante en parcourant la liste

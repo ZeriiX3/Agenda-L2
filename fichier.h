@@ -41,7 +41,7 @@ typedef struct s_d_list {
 t_d_list* create_list(int max_lvl);
 
 // Insérer une cellule à la tête de la liste
-void cell_atHead(t_d_list* list, t_d_cell* cell);
+void cell_at_head(t_d_list* list, t_d_cell* cell);
 
 // Permet l'affichage d'une cellule selon le niveau
 void display_cells(t_d_list * list, int level);

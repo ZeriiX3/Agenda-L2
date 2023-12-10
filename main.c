@@ -14,7 +14,7 @@ Par Sébastien XU, Matthieu BACHELERIE et Angel BOURDIOL */
 // ******************************************************************************** //
 
 
-// BOUCLE PRINCIPALE
+// MAIN
 
 int main() {
 
