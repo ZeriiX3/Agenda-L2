@@ -54,7 +54,7 @@ t_appointment* create_appointment(char*, int, int, int, int, int);
 // Déclaration de fonction pour insérer un rendez-vous dans une entrée
 void insert_appointment(t_appointment*, t_input *);
 // Déclaration de fonction pour vérifier l'ordre alphabétique des noms
-int order_name(char*, char*);
+int is_name_before(char*, char*);
 // Déclaration de fonction pour trouver un contact dans la liste
 t_input * find_contact(char*, t_input_list*);
 
@@ -72,6 +72,6 @@ void display_input_list(t_input_list*);
 // Déclaration de fonction pour saisir une chaîne de caractères
 char* scan_string();
 // Déclaration de fonction pour obtenir le nom formaté d'un contact
-char* formatted_name(t_contact*);
+char* get_name_formatted(t_contact*);
 
 #endif //GESTION_AGENDA_MODELS_H

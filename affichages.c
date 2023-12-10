@@ -198,7 +198,7 @@ void menu_add_appointment(t_input_list* input_list) {
     int hour;
     scanf("%d", &hour);
 
-    while(hour < 0 || hour > 23)
+    if (hour < 0 || hour > 23)
     {
         printf("L'heure doit etre comprise entre 0 et 23.\n");
         scanf("%d",&hour);
@@ -218,7 +218,7 @@ void menu_add_appointment(t_input_list* input_list) {
     int day;
     scanf("%d", &day);
 
-    while(day < 1 || day > 31) {
+    if (day < 1 || day > 31) {
         printf("Le jour doit etre compris entre 1 et 31.\n");
         scanf("%d", &day);
     }
@@ -244,7 +244,6 @@ void menu_add_appointment(t_input_list* input_list) {
     t_appointment* appointment = create_appointment(object, hour, minute, day, month, year);
     insert_appointment(appointment, input);
 
-    return;
 }
 
 void menu_display_appointment(t_input_list* input_list) {
